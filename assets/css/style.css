@@ -1,6 +1,6 @@
 html{
-	  position: relative;
-	  min-height: 100%;
+	position: relative;
+	min-height: 100%;
 }
 body {
 	padding-top: 50px;
@@ -21,9 +21,9 @@ body {
 
 }
 .footer p{
-		line-height: 50px;
-		padding: 0;
-		margin:0;
+	line-height: 50px;
+	padding: 0;
+	margin:0;
 }
 
 
@@ -31,3 +31,4 @@ body {
 	height: 550px;
 	overflow-y: auto;
 }
+
