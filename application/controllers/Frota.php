@@ -11,12 +11,12 @@ class Frota extends CI_Controller {
 		$this->load->model('Modelos_model');
 	}
 	
-		public function index(){
+		public function pesquisa(){
 		// var_dump($this->Automovel_model->obterTodosAutomoveis());
 		$this->load->helper('form');
 
-		$data['active_menu'] = 'frota';
-		$data['content']     = 'frota/index';
+		$data['active_menu'] = 'books';
+		$data['content']     = 'frota/pesquisa';
 		$this->load->view('init',$data);
 
 	}
