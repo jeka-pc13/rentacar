@@ -75,6 +75,20 @@ class Automovel_model extends CI_Model {
 			return $this->db->get()->result();
 	}
 
+
+	public function getAutomoveisListCount():int{
+			$select = "autos.id as id";
+
+			$this->db->select($select)
+			->from("automoveis.automoveis autos")
+			->join("automoveis.cores c", "autos.cor_id = c.id") //Cores
+			->join("automoveis.modelos m", "autos.modelo_id = m.id")//modelo 
+			->join("automoveis.fabricantes f", "m.fabricante-id = f.id")
+			->group_by("autos.id");
+			return $this->db->count_all_results();
+	}
+
+
 	public function obterMatriculas(){
 		$select = "autos.matricula";
 
