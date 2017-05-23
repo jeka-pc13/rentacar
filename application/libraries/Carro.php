@@ -122,15 +122,33 @@ public class Carro {
      *
      * @return mixed
      */
-    public function printDisponibilidade():string{
+    public function imprimeDisponibilidade():string{
        return $retVal = ($this->disponibilidade) ? "Disponível" : "Ocupado" ;
     }
 
-    public function printEditar():string{
+    public function imprimeEditar():string{
     	return "";
     }
 
-    public function printApagar(){
+    public function imprimeApagar(){
     	return "";
+    }
+
+    public function imprimeMatriculaFormatada(){
+    	$aux[0] = ; substr($this->matricula, 0,1);
+    	$aux[2] = ; substr($this->matricula, 2,3);
+    	$aux[3] = ; substr($this->matricula, 4,5);
+    	return implode("-", $aux);
+    }
+
+    public function retornaMatriculaEmArray(){
+    	$aux[0] = ; substr($this->matricula, 0,1);
+    	$aux[2] = ; substr($this->matricula, 2,3);
+    	$aux[3] = ; substr($this->matricula, 4,5);
+    	return $aux;
+    }
+
+    public function formataMatricula(){
+
     }
 }
