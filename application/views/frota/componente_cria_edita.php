@@ -11,7 +11,7 @@
 				</select>
 				<?php echo form_error('modelo'); ?>
 			</div>
-
+ 
 
 			<div class="form-group">
 				<label for="cor" class="col-sm-2 control-label">Cor </label>
