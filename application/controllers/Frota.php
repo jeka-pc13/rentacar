@@ -5,7 +5,7 @@ class Frota extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		//$this->load->model('Automovel_model');
+		$this->load->model('Automovel_model');
 		$this->load->model('Cores_model');
 		$this->load->model('Fabricantes_model');
 		$this->load->model('Modelos_model');
