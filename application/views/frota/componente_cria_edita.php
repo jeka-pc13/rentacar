@@ -1,5 +1,16 @@
 <div class="container-fluid">
 	<div class="panel">
+		<?php if ($success??:false) ?>
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title text-center">Parabéns!!</h3>
+				</div>
+				<div class="panel-body text-center">
+					<legend>Os Dados Foram Submetidos Com Sucesso</legend>
+				</div>
+			</div>
+		<?php endif ?>
+
 
 		<form method="post" action="componente_cria_edita.php">
 			<div class="form-group">
@@ -11,7 +22,7 @@
 				</select>
 				<?php echo form_error('modelo'); ?>
 			</div>
-    
+
 
 			<div class="form-group">
 				<label for="cor" class="col-sm-2 control-label">Cor </label>
