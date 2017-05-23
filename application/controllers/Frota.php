@@ -71,6 +71,14 @@ class Frota extends CI_Controller {
 
 	}
 
+	public function remover($id_automovel = 0){
+		$data['id_automovel'] = $id_automovel;
+		$data['active_menu'] = 'frota';
+		$data['content']     = 'frota/remover';
+		$this->load->view('init',$data);
+
+	}
+
 		
 
 
