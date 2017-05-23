@@ -6,9 +6,15 @@ class Publico extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+		$this->load->database();
+		$this->load->model('Automovel_model');
+			// var_dump($this->db);
+			// var_dump($this->db->conn_id)
 	}
 	
 	public function index(){
+		var_dump($this->Automovel_model->obterTodosAutomoveis());
+		
 		$data['active_menu'] = 'home';
 		$data['content']     = 'home';
 		$this->load->view('init',$data);
