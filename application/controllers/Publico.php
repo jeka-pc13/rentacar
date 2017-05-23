@@ -17,6 +17,32 @@ class Publico extends CI_Controller {
 		$search = array('fabricante' => "Toyota");
 		var_dump($this->Automovel_model->obterAutomoveisPorFiltro($search));
 
+		$this->load->library('pagination');
+		$form_url = "publico/index";
+
+		if (count($search) > 0) {
+			$form_url .= '?'.http_build_query($search,'',"&");
+		}
+
+		$offset = $this->input->get("page")??0;
+
+		$config['base_url'] = base_url($form_url);//redefinido para a paginação
+		$config['enable_query_strings']= TRUE;
+		$config['page_query_string']= true;
+		
+		$config['total_rows'] = $this->Automovel_model->obterAutomoveisPorFiltro($search);
+		$this->pagination->initialize($config);
+		$config['per_page'] = ITEMS_PER_PAGE;
+
+		$data['title']= $this->input->get('title');
+		$data['author']= $this->input->get('author');
+		$data['author']= $this->input->get('author');
+        
+
+		$data['search_results_count'] = $config['total_rows'];
+		$data['search_pagination'] = $this->pagination->create_links();
+		$data['search_results'] = $this->Automovel_model->obterAutomoveisPorFiltro($search, $offset);
+
 		$data['active_menu'] = 'home';
 		$data['content']     = 'home';
 		$this->load->view('init',$data);

@@ -86,4 +86,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 /** CUSTOM CONSTANTS FROM DEVELOPER */
-defined('ITEMS_PER_PAGE') OR define('ITEMS_PER_PAGE', 4);
+defined('ITEMS_PER_PAGE') OR define('ITEMS_PER_PAGE', 10);
