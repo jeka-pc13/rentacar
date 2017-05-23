@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <a href="<?php echo base_url();?>publico/sobre/">Sobre</a>
         </li>
         <li <?php echo setMenuActiveItem($active_menu=='books')?>>
-          <a href="<?php echo base_url();?>frota/">Frota automóvel</a>
+          <a href="<?php echo base_url();?>frota/pesquisa/">Frota automóvel</a>
         </li>
         <li <?php echo setMenuActiveItem($active_menu=='contact')?>>
           <a href="<?php echo base_url();?>publico/contacto/">Contacto</a>

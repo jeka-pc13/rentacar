@@ -13,6 +13,12 @@
 		->get("cores")
 		->result();	
 	}
-}
 
-	?>
+	public function obtemId($nome){
+		$sql = "SELECT id FROM cores WHERE nome = ?";
+		$this->db->where("nome", $nome);
+		$this->db->select("id");
+		$this->db->from("cores");
+		return $this->db->get()->result();
+	}
+}
