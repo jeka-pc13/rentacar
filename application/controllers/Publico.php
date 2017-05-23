@@ -15,7 +15,8 @@ class Publico extends CI_Controller {
 	public function index(){
 		// var_dump($this->Automovel_model->obterTodosAutomoveis());
 		$search = array('fabricante' => "Toyota");
-		var_dump($this->Automovel_model->obterAutomoveisPorFiltro($search));
+		// var_dump($this->Automovel_model->obterAutomoveisPorFiltro($search));
+		var_dump($this->Automovel_model->obterListaMatriculas());
 
 		$this->load->library('pagination');
 		$form_url = "publico/index";
