@@ -75,7 +75,7 @@ class Automovel_model extends CI_Model {
 			return $this->db->get()->result();
 	}
 
-<<<<<<< HEAD
+
 
 	public function getAutomoveisListCount():int{
 			$select = "autos.id as id";
@@ -89,16 +89,12 @@ class Automovel_model extends CI_Model {
 			return $this->db->count_all_results();
 	}
 
-
-	public function obterMatriculas(){
-=======
 	/**
 	 * retorna todas as matriculas dos carros
 	 *
 	 * @return     <array>  array de objetos contendo todas as matriculos 
 	 */
 	public function obterMatriculas():array{
->>>>>>> origin/master
 		$select = "autos.matricula";
 
 			$this->db->select($select)
