@@ -31,3 +31,8 @@ body {
 	height: 550px;
 	overflow-y: auto;
 }
+
+.carousel-inner img {
+    width: 100%;
+    max-height: 560px;
+}
