@@ -70,7 +70,8 @@ class Automovel_model extends CI_Model {
 			->join("automoveis.cores c", "autos.cor_id = c.id") //Cores
 			->join("automoveis.modelos m", "autos.modelo_id = m.id")//modelo 
 			->join("automoveis.fabricantes f", "m.fabricante-id = f.id")
-			->group_by("autos.id");
+			->where("autos.cremovido = 0")
+			->order_by("autos.id");
 			// ->limit($limit,$offset);
 			return $this->db->get()->result();
 	}
@@ -85,6 +86,7 @@ class Automovel_model extends CI_Model {
 			->join("automoveis.cores c", "autos.cor_id = c.id") //Cores
 			->join("automoveis.modelos m", "autos.modelo_id = m.id")//modelo 
 			->join("automoveis.fabricantes f", "m.fabricante-id = f.id")
+			->where("autos.cremovido = 0")
 			->group_by("autos.id");
 			return $this->db->count_all_results();
 	}
