@@ -18,7 +18,7 @@
   						<div class="col-md-3">
   							<select class="form-control" id="sel1" name="sel1">
   								<option value= "fabricante">Fabricante</option>
-  								<option value= "matricula">MAtrícula</option>
+  								<option value= "matricula">Matrícula</option>
   								<option value= "modelo">Modelo</option>
   							</select>
   						</div>
