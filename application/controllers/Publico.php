@@ -22,7 +22,7 @@ class Publico extends CI_Controller {
 
 	public function sobre(){
 		$data['active_menu'] = 'about';
-		$data['content']     = 'about';
+		$data['content']     = 'sobre';
 		$this->load->view('init',$data);
 	}
 
