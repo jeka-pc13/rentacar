@@ -92,12 +92,12 @@ class Automovel_model extends CI_Model {
 			->from("automoveis.automoveis autos")
 			->group_by("autos.id");
 			// ->limit($limit,$offset);
-			$result= $this->db->get()->result();
+			$result= $this->db->get()->result_array();
 
 			$list = array();
 
 			foreach ($result as $key => $matricula) {
-				$list[] = $matricula
+				$list[] = $matricula;
 			}
 
 			return implode(",", $list);
