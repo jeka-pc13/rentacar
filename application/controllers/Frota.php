@@ -21,6 +21,14 @@ class Frota extends CI_Controller {
 
 	}
 
+	public function editar($id_automovel = 0){
+		$data['id_automovel'] = $id_automovel;
+		$data['active_menu'] = 'frota';
+		$data['content']     = 'frota/editar';
+		$this->load->view('init',$data);
+
+	}
+
 		
 
 
