@@ -18,6 +18,48 @@ class Frota extends CI_Controller {
 		$data['active_menu'] = 'books';
 		$data['content']     = 'frota/pesquisa';
 		$this->load->view('init',$data);
+		$this->load->helper('form');
+
+		$search = array();
+		$search['fabricante'] = $this->input->get('fabricante')??"";
+		$search['matricula'] = $this->input->get('matricula')??"";	
+		$search['modelo'] = $this->input->get('modelo')??"";	
+
+
+		$this->load->library('pagination');
+		$form_url = "frota/";
+
+		if (count($search) > 0) {
+			$form_url .= '?'.http_build_query($search,'',"&");
+		}
+
+		$offset = $this->input->get("page")??0;
+
+		$config['base_url'] = base_url($form_url);//redefinido para a paginação
+		$config['enable_query_strings']= TRUE;
+		$config['page_query_string']= true;
+				
+		$config['total_rows'] = $this->Automovel_model->getAutomoveisListCount($search);
+		$this->pagination->initialize($config);
+		$config['per_page'] = ITEMS_PER_PAGE;
+
+		$data['title']= $this->input->get('title');
+		$data['author']= $this->input->get('author');
+        //$data['isbn']= $this->input->get('isbn');
+
+		$data['search_results_count'] = $config['total_rows'];
+		$data['search_pagination'] = $this->pagination->create_links();
+		$data['search_results'] = $this->Books_model->getBookList($search, $offset);
+
+		//carregar view
+		$data_modal['authors'] = $this->Authors_model->getAll();
+		$data_modal['editoras'] = $this->Editors_model->getAll();
+		$data['create_modal'] = $this->load->view('books/create', $data_modal, TRUE);
+
+		$data['active_menu'] = 'books';
+		$data['content']     = 'rentacar/index';
+		//add values from the form
+		$this->load->view('init',$data);
 
 	}
 
