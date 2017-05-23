@@ -23,14 +23,17 @@
                         <ul class="dropdown-menu pull-left" role="menu">
                            <li>
                                 <a href="#">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                    <span class="label-icon">Search By User</span>
+                                    <span class="label-icon">Cor</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                <span class="glyphicon glyphicon-book"></span>
-                                <span class="label-icon">Search By Organization</span>
+                                <span class="label-icon">Fabricante</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                <span class="label-icon">Modelo</span>
                                 </a>
                             </li>
                         </ul>
@@ -116,7 +119,24 @@
     </div>
   </div>
 
+<script>
+   
+$(function(){
+    
+    $(".input-group-btn .dropdown-menu li a").click(function(){
 
+        var selText = $(this).html();
+    
+        //working version - for single button //
+       //$('.btn:first-child').html(selText+'<span class="caret"></span>');  
+       
+       //working version - for multiple buttons //
+       $(this).parents('.input-group-btn').find('.btn-search').html(selText);
+
+   });
+
+});
+</script>
 
 
  
