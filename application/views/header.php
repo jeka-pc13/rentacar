@@ -11,12 +11,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<?php echo base_url();?>">Rent-a-Car</a>
+      <a class="navbar-brand" href="<?php echo base_url();?>publico/">Rent-a-Car</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li <?php echo setMenuActiveItem($active_menu=='home')?>>
-          <a href="<?php echo base_url();?>publico/">Home</a>
+          <a href="<?php echo base_url();?>publico/home/">Home</a>
         </li>
         <li <?php echo setMenuActiveItem($active_menu=='about')?>>
           <a href="<?php echo base_url();?>publico/sobre/">Sobre</a>
