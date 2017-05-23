@@ -80,7 +80,7 @@ class Automovel_model extends CI_Model {
 	 *
 	 * @return     <array>  array de objetos contendo todas as matriculos 
 	 */
-	public function obterMatriculas():array(){
+	public function obterMatriculas():array{
 		$select = "autos.matricula";
 
 			$this->db->select($select)
