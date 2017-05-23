@@ -45,7 +45,7 @@ class Automovel_model extends CI_Model {
 		 * @param      integer  $offset  The offset
 		 * @param      integer  $limit   The limit
 		 *
-		 * @return     <type>   ( description_of_the_return_value )
+		 * @return     array    array de objetos resultante da pesquisa na base de dados
 		 */
 		public function obterAutomoveisPorFiltro(array $search = array(), int $offset=0, int $limit=ITEMS_PER_PAGE):array{
 
@@ -73,5 +73,33 @@ class Automovel_model extends CI_Model {
 			->group_by("autos.id");
 			// ->limit($limit,$offset);
 			return $this->db->get()->result();
+	}
+
+	public function obterMatriculas(){
+		$select = "autos.matricula";
+
+			$this->db->select($select)
+			->from("automoveis.automoveis autos")
+			->group_by("autos.id");
+			// ->limit($limit,$offset);
+			return $this->db->get()->result();
+	}
+
+	public function obterListaMatriculas(){
+		$select = "autos.matricula";
+
+			$this->db->select($select)
+			->from("automoveis.automoveis autos")
+			->group_by("autos.id");
+			// ->limit($limit,$offset);
+			$result= $this->db->get()->result();
+
+			$list = array();
+
+			foreach ($result as $key => $matricula) {
+				$list[] = $matricula
+			}
+
+			return implode(",", $list);
 	}
 }
