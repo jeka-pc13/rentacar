@@ -20,4 +20,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   } );
   </script>
 
+  <!-- Custom JS files -->
+  <?php if($js_files ?? false){
+        foreach ($js_files as $js_file): ?>
+    <link href="<?php echo base_url('/assets/js/'.$js_file)?>" rel="stylesheet">
+    <?php endforeach; ?>
+
 
