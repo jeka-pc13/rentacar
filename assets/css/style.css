@@ -32,3 +32,10 @@ body {
 	overflow-y: auto;
 }
 
+<<<<<<< HEAD
+=======
+.carousel-inner img {
+    width: 100%;
+    max-height: 560px;
+}
+>>>>>>> 17c1a387719a747ca1a1e0dafbc9a4e62d886f66

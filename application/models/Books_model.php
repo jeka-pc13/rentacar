@@ -108,9 +108,6 @@ class Books_model extends CI_Model {
 		if($search['author'] ?? false){
 			$this->db->having('nome LIKE', '%'.$search['author'].'%'); // nome LIKE '%a%'*/
 		}
-
-
-		
 		$this->db->select("idlivro,titulo, data_publicacao, GROUP_CONCAT(aut.nome ) as nome");/**/
 		$this->db->from("livros as liv");
 		$this->db->join('livros_has_autores as lha','lha.livros_idLivro = liv.idlivro'); // nome LIKE '%a%'*/
