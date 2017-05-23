@@ -16,16 +16,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li <?php echo setMenuActiveItem($active_menu=='home')?>>
-          <a href="<?php echo base_url();?>">Home</a>
+          <a href="<?php echo base_url();?>publico/">Home</a>
         </li>
         <li <?php echo setMenuActiveItem($active_menu=='about')?>>
-          <a href="<?php echo base_url();?>welcome/about/">About</a>
+          <a href="<?php echo base_url();?>publico/sobre/">Sobre</a>
         </li>
         <li <?php echo setMenuActiveItem($active_menu=='books')?>>
-          <a href="<?php echo base_url();?>books/">Books</a>
+          <a href="<?php echo base_url();?>frota/">Frota automóvel</a>
         </li>
         <li <?php echo setMenuActiveItem($active_menu=='contact')?>>
-          <a href="<?php echo base_url();?>welcome/contact/">Contact</a>
+          <a href="<?php echo base_url();?>publico/contacto/">Contacto</a>
         </li>
       </ul>
     </div><!--/.nav-collapse -->
