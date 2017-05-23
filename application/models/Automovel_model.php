@@ -75,31 +75,43 @@ class Automovel_model extends CI_Model {
 			return $this->db->get()->result();
 	}
 
-	public function obterMatriculas(){
+	/**
+	 * retorna todas as matriculas dos carros
+	 *
+	 * @return     <array>  array de objetos contendo todas as matriculos 
+	 */
+	public function obterMatriculas():array(){
 		$select = "autos.matricula";
 
 			$this->db->select($select)
 			->from("automoveis.automoveis autos")
-			->group_by("autos.id");
+			->where("autos.matricula IS NOT NULL")
+			->order_by("autos.id");
 			// ->limit($limit,$offset);
 			return $this->db->get()->result();
 	}
 
-	public function obterListaMatriculas(){
+	/**
+	 * retorna uma listagem (string) com todas as matriculas armazenadas na base de dados
+	 *
+	 * @return     <type>  ( description_of_the_return_value )
+	 */
+	public function obterListaMatriculas():string{
 		$select = "autos.matricula";
 
 			$this->db->select($select)
 			->from("automoveis.automoveis autos")
-			->group_by("autos.id");
+			->where("autos.matricula IS NOT NULL")
+			->order_by("autos.id");
 			// ->limit($limit,$offset);
 			$result= $this->db->get()->result_array();
-
+			//var_dump($result);
 			$list = array();
 
 			foreach ($result as $key => $matricula) {
-				$list[] = $matricula;
+				$list[] = $matricula["matricula"];
 			}
-
+			//var_dump($list);
 			return implode(",", $list);
 	}
 }
