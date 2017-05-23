@@ -14,7 +14,7 @@ class Publico extends CI_Controller {
 	
 	public function index(){
 		var_dump($this->Automovel_model->obterTodosAutomoveis());
-		
+
 		$data['active_menu'] = 'home';
 		$data['content']     = 'home';
 		$this->load->view('init',$data);
@@ -28,7 +28,7 @@ class Publico extends CI_Controller {
 
 	public function contacto(){
 		$data['active_menu'] = 'contact';
-		$data['content']     = 'contact';
+		$data['content']     = 'contacto';
 		$this->load->view('init',$data);
 	}
 }
