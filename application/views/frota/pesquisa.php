@@ -12,26 +12,27 @@
   					);
   				echo form_open('pesquisa/', $options);
   				?>
-  				<div class="col-md-9">
+  				<div class="col-md-10">
   					<div class="input-group">
 
   						<div class="col-md-3">
-  							<select class="form-control" id="sel1" name="sel1">
+  							<select class="form-control" id="pesquisa" name="pesquisas">
   								<option value= "fabricante">Fabricante</option>
   								<option value= "matricula">Matrícula</option>
   								<option value= "modelo">Modelo</option>
   							</select>
   						</div>
 
-  						<div class="col-md-5">
+  						<span class="col-md-5">
   							<input type="text" class="form-control">
-  						</div>
+  						</span>
 
   						<div class="col-md-1">
   							<span class="input-group-btn">
-  								<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span></button>
+  								<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
   							</span>
   						</div>
+
 
   					</div>
   				</div> 
@@ -42,7 +43,7 @@
   </div> <!-- container -->
 
 
-  <h2>Book list <small><?php echo $search_results_count; ?> </small></h2>       
+  <h2>Book list <small><?php echo $search_results_count; ?></small></h2>       
   <div class="panel">
   	<table class="table table-striped table-bordered  table-hover">
   		<thead>
@@ -52,16 +53,24 @@
   				<th>Cor</th>
   				<th>Matrícula</th>
   				<th>Disponibilidade</th>
+  				<th>Ações</th>
   			</tr>
   		</thead>
   		<tbody>
-  			<?php foreach($search_results as $livro) : ?>
+  			<?php foreach($search_results as $auto) : ?>
   				<tr>
-  					<td><?php echo $livro->idlivro;?></td> 
-  					<td><?php echo $livro->titulo;?></td>
-  					<td><span class="label label-default"><?php echo $livro->nome;?></span></td>
-  					<td><?php echo $livro->data_publicacao;?></td>
+  					<td><?php echo $auto->fabricante;?></td> 
+  					<td><?php echo $auto->modelo;?></td>
+  					<td><?php echo $auto->cor;?></td>
+  					<?php 
+  					$primeiro = substr($auto->matricula, 0, 2);
+  					$segundo  = substr($auto->matricula, 2, 2);
+  					$terceiro = substr($auto->matricula, 4, 2);
+  					?>
+  					<td><?php echo "$primeiro-$segundo-$terceiro";?></td>
+  					<td><?php echo $auto->disponibilidade;?></td>
   					<td class="actions">
+
 
   						<button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
   							<span class="glyphicon glyphicon-pencil"></span>
@@ -80,7 +89,7 @@
 
 
 
-<  <!-- Modal -->
+ <!-- Modal -->
 <div class="modal fade" id="create-book" role="dialog">
 	<div class="modal-dialog">
 
@@ -106,23 +115,6 @@
 	</div>
 </div>
 
-<script>
 
-	$(function(){
-
-		$(".input-group-btn .dropdown-menu li a").click(function(){
-
-			var selText = $(this).html();
-
-        //working version - for single button //
-       //$('.btn:first-child').html(selText+'<span class="caret"></span>');  
-       
-       //working version - for multiple buttons //
-       $(this).parents('.input-group-btn').find('.btn-search').html(selText);
-
-   });
-
-	});
-</script>
 
 

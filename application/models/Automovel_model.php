@@ -19,21 +19,22 @@ class Automovel_model extends CI_Model {
 	 */
 	public function obterTodosAutomoveis():array{
 
-			$select = "autos.id as id,
-			m.nome as modelo,
-			f.nome as fabricante,
-			c.nome as cor,
-			autos.disponibilidade as disponibilidade";
+		$select = "autos.id as id,
+		m.nome as modelo,
+		f.nome as fabricante,
+		matricula,
+		c.nome as cor,
+		autos.disponibilidade as disponibilidade";
 
-			$this->db->select($select)
-			->from("automoveis.automoveis autos")
+		$this->db->select($select)
+		->from("automoveis.automoveis autos")
 			->join("automoveis.cores c", "autos.cor_id = c.id") //Cores
 			->join("automoveis.modelos m", "autos.modelo_id = m.id")//modelo 
 			->join("automoveis.fabricantes f", "m.fabricante-id = f.id")
 			->group_by("autos.id");
 			// ->limit($limit,$offset);
 			return $this->db->get()->result();
-	}
+		}
 
 		/**
 		 * dado um array associativo (com chaves possieveis: modelo, matricula e
@@ -52,16 +53,17 @@ class Automovel_model extends CI_Model {
 			if ($search['modelo'] ?? false) {
 				$this->db->like("modelo",$search['modelo']);
 			}
-			// if ($search['matricula'] ?? false) {
-			// 	$this->db->like("matricula",$search['matricula']);
-			// }
+			if ($search['matricula'] ?? false) {
+				$this->db->like("matricula",$search['matricula']);
+			}
 			if ($search['fabricante'] ?? false) {
-				$this->db->having('fabricante LIKE', '%'.$search['fabricante'].'%');
+				$this->db->like('fabricante',$search['fabricante']);
 			}
 
 			$select = "autos.id as id,
 			m.nome as modelo,
 			f.nome as fabricante,
+			matricula,
 			c.nome as cor,
 			autos.disponibilidade as disponibilidade";
 
@@ -74,11 +76,21 @@ class Automovel_model extends CI_Model {
 			->order_by("autos.id");
 			// ->limit($limit,$offset);
 			return $this->db->get()->result();
-	}
+		}
 
 
 
-	public function getAutomoveisListCount():int{
+		public function getAutomoveisListCount(array $search=array()):int{
+
+			if ($search['modelo'] ?? false) {
+				$this->db->like("modelo",$search['modelo']);
+			}
+			if ($search['matricula'] ?? false) {
+				$this->db->like("matricula",$search['matricula']);
+			}
+			if ($search['fabricante'] ?? false) {
+				$this->db->like('fabricante', $search['fabricante']);
+			}
 			$select = "autos.id as id";
 
 			$this->db->select($select)
@@ -89,7 +101,7 @@ class Automovel_model extends CI_Model {
 			->where("autos.cremovido = 0")
 			->group_by("autos.id");
 			return $this->db->count_all_results();
-	}
+		}
 
 	/**
 	 * retorna todas as matriculas dos carros
@@ -99,12 +111,12 @@ class Automovel_model extends CI_Model {
 	public function obterMatriculas():array{
 		$select = "autos.matricula";
 
-			$this->db->select($select)
-			->from("automoveis.automoveis autos")
-			->where("autos.matricula IS NOT NULL")
-			->order_by("autos.id");
+		$this->db->select($select)
+		->from("automoveis.automoveis autos")
+		->where("autos.matricula IS NOT NULL")
+		->order_by("autos.id");
 			// ->limit($limit,$offset);
-			return $this->db->get()->result();
+		return $this->db->get()->result();
 	}
 
 	/**
@@ -115,19 +127,19 @@ class Automovel_model extends CI_Model {
 	public function obterListaMatriculas():string{
 		$select = "autos.matricula";
 
-			$this->db->select($select)
-			->from("automoveis.automoveis autos")
-			->where("autos.matricula IS NOT NULL")
-			->order_by("autos.id");
+		$this->db->select($select)
+		->from("automoveis.automoveis autos")
+		->where("autos.matricula IS NOT NULL")
+		->order_by("autos.id");
 			// ->limit($limit,$offset);
-			$result= $this->db->get()->result_array();
+		$result= $this->db->get()->result_array();
 			//var_dump($result);
-			$list = array();
+		$list = array();
 
-			foreach ($result as $key => $matricula) {
-				$list[] = $matricula["matricula"];
-			}
+		foreach ($result as $key => $matricula) {
+			$list[] = $matricula["matricula"];
+		}
 			//var_dump($list);
-			return implode(",", $list);
+		return implode(",", $list);
 	}
 }
