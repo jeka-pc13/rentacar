@@ -21,6 +21,7 @@ class Frota extends CI_Controller {
 		$search = array();
 		$filtro= $this->input->get('filtro')??"";
 		$search[$filtro] = $this->input->get('search')??"";
+		var_dump($search);
 		//$search['matricula'] = $this->input->get('search')??"";	
 		//$search['modelo'] = $this->input->get('search')??"";
 
@@ -28,7 +29,7 @@ class Frota extends CI_Controller {
 
 
 		$this->load->library('pagination');
-		$form_url = "pesquisa/";
+		$form_url = "frota/pesquisa/";
 
 		if (count($search) > 0) {
 			$form_url .= '?'.http_build_query($search,'',"&");
@@ -40,6 +41,7 @@ class Frota extends CI_Controller {
 		$config['enable_query_strings']= TRUE;
 		$config['page_query_string']= true;
 
+		$config['total_rows'] = 100;
 		$config['total_rows'] = $this->Automovel_model->getAutomoveisListCount($search);
 		$this->pagination->initialize($config);
 		$config['per_page'] = ITEMS_PER_PAGE;

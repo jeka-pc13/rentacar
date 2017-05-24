@@ -38,7 +38,8 @@ class Publico extends CI_Controller {
 	}
 
 	public function contacto(){
-		$search = array('fabricantes' => "Toyota");
+		$search = array('fabricante' => "Toyota");
+		// $search = array('matricula' => "v");
 		var_dump($this->Automovel_model->obterAutomoveisPorFiltro($search));
 		//var_dump($this->Automovel_model->obterTodosAutomoveis());
 		$data['active_menu'] = 'contact';

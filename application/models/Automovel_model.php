@@ -51,13 +51,13 @@ class Automovel_model extends CI_Model {
 		public function obterAutomoveisPorFiltro(array $search = array(), int $offset=0, int $limit=ITEMS_PER_PAGE):array{
 
 			if ($search['modelo'] ?? false) {
-				$this->db->like("modelo",$search['modelo']);
+				$this->db->like("m.nome",$search['modelo']);
 			}
 			if ($search['matricula'] ?? false) {
 				$this->db->like("matricula",$search['matricula']);
 			}
 			if ($search['fabricante'] ?? false) {
-				$this->db->like('fabricante',$search['fabricante']);
+				$this->db->like('f.nome',$search['fabricante']);
 			}
 
 			$select = "autos.id as id,
@@ -87,13 +87,13 @@ class Automovel_model extends CI_Model {
 		public function getAutomoveisListCount(array $search=array()):int{
 
 			if ($search['modelo'] ?? false) {
-				$this->db->like("modelo",$search['modelo']);
+				$this->db->like("m.nome",$search['modelo']);
 			}
 			if ($search['matricula'] ?? false) {
 				$this->db->like("matricula",$search['matricula']);
 			}
 			if ($search['fabricante'] ?? false) {
-				$this->db->like('fabricante', $search['fabricante']);
+				$this->db->like('f.nome', $search['fabricante']);
 			}
 			$select = "autos.id as id";
 
