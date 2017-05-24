@@ -23,16 +23,13 @@ class Frota extends CI_Controller {
 	 */
 	public function pesquisa(){
 		$this->load->helper('form');
-		var_dump($this->input->get()??"");
+		//var_dump($this->input->get()??"");
 		$search = array();
 		$filtro= $this->input->get('filtro')??"";
 		$search[$filtro] = $this->input->get('search')??"";
-		var_dump($search);
+		//var_dump($search);
 		//$search['matricula'] = $this->input->get('search')??"";	
 		//$search['modelo'] = $this->input->get('search')??"";
-
-
-
 
 		$this->load->library('pagination');
 		$form_url = "frota/pesquisa";
@@ -51,8 +48,8 @@ class Frota extends CI_Controller {
 		$this->pagination->initialize($config);
 		$config['per_page'] = ITEMS_PER_PAGE;
 
-		$data['title']= $this->input->get('title');
-		$data['author']= $this->input->get('author');
+		$data['title']= $this->input->get('title');//ALTERAR
+		$data['author']= $this->input->get('author');//ALTERAR
         //$data['isbn']= $this->input->get('isbn');
 
 		$data['search_results_count'] = $config['total_rows'];
@@ -72,6 +69,8 @@ class Frota extends CI_Controller {
 
 	}
 
+	/*
+
 	public function editar($id_automovel = 0){
 		$data['id_automovel'] = $id_automovel;
 		$data['active_menu'] = 'frota';
@@ -87,9 +86,83 @@ class Frota extends CI_Controller {
 		$this->load->view('init',$data);
 
 	}
+*/
+	public function adicionar(){
+		//var_dump($this->input->post());	
 
+		$this->load->model('cores_model');
+		$this->cores_model->init(array('tabela' =>"cores"));
 
+		$this->load->model('fabricantes_model');
+		$this->fabricantes_model->init(array('tabela' =>"fabricantes"));
 
+		$this->load->model('modelos_model');
+		$this->modelos_model->init(array('tabela' =>"modelos"));
 
+		$this->load->helper('form');
+		$this->load->library('form_validation');
 
+		//$this->form_validation->set_rules('title', 'Title', 'required');
+		//$this->form_validation->set_error_delimiters('<div class="alert alert-danger page-alert">', '</div>');
+
+		$config = array(
+			array(
+				'field' => 'modelo',
+				'label' => 'Modelo',
+				'rules' => 'required|alpha_numeric_spaces',
+				'errors' => array(
+					'required' => 'É obrigatório indicar um %s.',
+					'alpha_numeric_spaces' => 'Contém caracteres inválidos'
+					)
+				),
+			array(
+				'field' => 'matricula',
+				'label' => 'Matrícula',
+				'rules' => 'required|exact_length[8]|is_unique[automoveis.matricula]',
+				'errors' => array(
+					'required' => 'É obrigatório inserir uma %s.',
+					'exact_length' => 'Verifique o número de caracteres(XX-XX-XX)',
+					'is_unique' => 'Ops! Esta %s já está registrada!'
+					)
+				),
+			array(
+				'field' => 'cor',
+				'label' => 'Cor',
+				'rules' => 'required',
+				'errors' => array(
+					'required' => 'É obrigatório escolher uma %s.',
+					)
+				),
+			array(
+				'field' => 'disponibilidade',
+				'label' => 'Disponilidade',
+				'rules' => 'required',
+				'errors' => array(
+					'required' => 'É obrigatório indicar a %s do automóvel.',
+					)
+				)
+			);
+
+		//$this->form_validation->set_rules($config);
+
+		//$data = array();
+		//para executar as validaçoes
+		if ($this->form_validation->run() == FALSE)
+		{			
+			$data['cores'] = $this->cores_model->getAll();
+			$data['fabricantes'] = $this->fabricantes_model->getAll();
+			$data['modelos'] = $this->modelos_model->getAll();
+				
+			$data['active_menu'] = 'books';
+			$data['content']     = 'frota/adicionar';
+			$this->load->view('init',$data);
+		}else{
+        	// Adicona livro a database
+			$this->automovel_model->adicionar($this->input->post());
+
+			$data['active_menu'] = 'books';
+			$data['content']     = 'frota/pesquisa';
+			$this->load->view('init',$data);      	
+		}	
+	}
 }
