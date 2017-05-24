@@ -143,7 +143,7 @@ class Automovel_model extends CI_Model {
 			$list[] = $matricula["matricula"];
 		}
 			//var_dump($list);
-		return implode(",", $list);
+		return implode(",", $list); 
 	}
 
 	/**
