@@ -5,10 +5,16 @@ class Frota extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('Automovel_model');
-		$this->load->model('Cores_model');
-		$this->load->model('Fabricantes_model');
-		$this->load->model('Modelos_model');
+		$this->load->model('automovel_model');
+
+		$this->load->model('cores_model');
+		$this->cores_model->init(array('tabela' =>"cores"));
+
+		$this->load->model('fabricantes_model');
+		$this->fabricantes_model->init(array('tabela' =>"fabricantes"));
+
+		$this->load->model('modelos_model');
+		$this->modelos_model->init(array('tabela' =>"modelos"));
 	}
 	
 	/**
@@ -29,7 +35,7 @@ class Frota extends CI_Controller {
 
 
 		$this->load->library('pagination');
-		$form_url = "frota/pesquisa/";
+		$form_url = "frota/pesquisa";
 
 		if (count($search) > 0) {
 			$form_url .= '?'.http_build_query($search,'',"&");
@@ -41,8 +47,7 @@ class Frota extends CI_Controller {
 		$config['enable_query_strings']= TRUE;
 		$config['page_query_string']= true;
 
-		$config['total_rows'] = 100;
-		$config['total_rows'] = $this->Automovel_model->getAutomoveisListCount($search);
+		$config['total_rows'] = $this->automovel_model->getAutomoveisListCount($search);
 		$this->pagination->initialize($config);
 		$config['per_page'] = ITEMS_PER_PAGE;
 
@@ -52,13 +57,13 @@ class Frota extends CI_Controller {
 
 		$data['search_results_count'] = $config['total_rows'];
 		$data['search_pagination'] = $this->pagination->create_links();
-		$data['search_results'] = $this->Automovel_model->obterAutomoveisPorFiltro($search, $offset);
+		$data['search_results'] = $this->automovel_model->obterAutomoveisPorFiltro($search, $offset);
 
 		//carregar view
-		//$data_modal['authors'] = $this->Cores_model->getAll();
-		$data_modal['editoras'] = $this->Modelos_model->getAll();
-		$data_modal['editoras'] = $this->Fabricantes_model->getAll();
-		//$data['create_modal'] = $this->load->view('frota/criar', $data_modal, TRUE);
+		/*$data_modal['cores'] = $this->Cores_model->getAll();
+		$data_modal['modelos'] = $this->Modelos_model->getAll();
+		$data_modal['fabricantes'] = $this->Fabricantes_model->getAll();
+		$data['create_modal'] = $this->load->view('frota/criar', $data_modal, TRUE);*/
 
 		$data['active_menu'] = 'books';
 		$data['content']     = 'frota/pesquisa';
