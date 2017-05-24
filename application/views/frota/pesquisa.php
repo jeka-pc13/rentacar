@@ -10,13 +10,13 @@
   					"method" => "GET",
   					"role"=> "search"
   					);
-  				echo form_open('pesquisa/', $options);
+  				echo form_open('frota/pesquisa/', $options);
   				?>
   				<div class="col-md-10">
   					<div class="input-group">
 
   						<div class="col-md-3">
-  							<select class="form-control" id="pesquisa" name="pesquisas">
+  							<select class="form-control" id="filtro" name="filtro">
   								<option value= "fabricante">Fabricante</option>
   								<option value= "matricula">Matrícula</option>
   								<option value= "modelo">Modelo</option>
@@ -24,7 +24,7 @@
   						</div>
 
   						<span class="col-md-5">
-  							<input type="text" class="form-control">
+  							<input type="text" class="form-control" name="search">
   						</span>
 
   						<div class="col-md-1">
@@ -62,12 +62,7 @@
   					<td><?php echo $auto->fabricante;?></td> 
   					<td><?php echo $auto->modelo;?></td>
   					<td><?php echo $auto->cor;?></td>
-  					<?php 
-  					$primeiro = substr($auto->matricula, 0, 2);
-  					$segundo  = substr($auto->matricula, 2, 2);
-  					$terceiro = substr($auto->matricula, 4, 2);
-  					?>
-  					<td><?php echo "$primeiro-$segundo-$terceiro";?></td>
+  					<td><?php echo $auto->matricula;?></td>
   					<td><?php echo $auto->disponibilidade;?></td>
   					<td class="actions">
 

@@ -11,20 +11,24 @@ class Frota extends CI_Controller {
 		$this->load->model('Modelos_model');
 	}
 	
-		public function pesquisa(){
-		// var_dump($this->Automovel_model->obterTodosAutomoveis());
+	/**
+	 * Filtra a pesquisa
+	 * @return [type] [description]
+	 */
+	public function pesquisa(){
 		$this->load->helper('form');
-
-
-
+var_dump($this->input->get()??"");
 		$search = array();
-		$search['fabricante'] = $this->input->get('fabricante')??"";
-		$search['matricula'] = $this->input->get('matricula')??"";	
-		$search['modelo'] = $this->input->get('modelo')??"";	
+		$filtro= $this->input->get($filtro)??"";
+		$search[$filtro] = $this->input->get($search)??"";
+		//$search['matricula'] = $this->input->get('search')??"";	
+		//$search['modelo'] = $this->input->get('search')??"";
+
+			
 
 
 		$this->load->library('pagination');
-		$form_url = "frota/";
+		$form_url = "pesquisa/";
 
 		if (count($search) > 0) {
 			$form_url .= '?'.http_build_query($search,'',"&");
@@ -35,7 +39,7 @@ class Frota extends CI_Controller {
 		$config['base_url'] = base_url($form_url);//redefinido para a paginação
 		$config['enable_query_strings']= TRUE;
 		$config['page_query_string']= true;
-				
+
 		$config['total_rows'] = $this->Automovel_model->getAutomoveisListCount($search);
 		$this->pagination->initialize($config);
 		$config['per_page'] = ITEMS_PER_PAGE;
@@ -77,7 +81,7 @@ class Frota extends CI_Controller {
 
 	}
 
-		
+
 
 
 
