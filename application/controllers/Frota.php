@@ -49,15 +49,16 @@ class Frota extends CI_Controller {
 
 		$data['search_results_count'] = $config['total_rows'];
 		$data['search_pagination'] = $this->pagination->create_links();
-		$data['search_results'] = $this->Books_model->getBookList($search, $offset);
+		$data['search_results'] = $this->Automovel_model->obterAutomoveisPorFiltro($search, $offset);
 
 		//carregar view
-		$data_modal['authors'] = $this->Authors_model->getAll();
-		$data_modal['editoras'] = $this->Editors_model->getAll();
-		$data['create_modal'] = $this->load->view('books/create', $data_modal, TRUE);
+		//$data_modal['authors'] = $this->Cores_model->getAll();
+		$data_modal['editoras'] = $this->Modelos_model->getAll();
+		$data_modal['editoras'] = $this->Fabricantes_model->getAll();
+		//$data['create_modal'] = $this->load->view('frota/criar', $data_modal, TRUE);
 
 		$data['active_menu'] = 'books';
-		$data['content']     = 'rentacar/index';
+		$data['content']     = 'frota/pesquisa';
 		//add values from the form
 		$this->load->view('init',$data);
 
