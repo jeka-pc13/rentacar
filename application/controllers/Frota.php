@@ -15,10 +15,7 @@ class Frota extends CI_Controller {
 		// var_dump($this->Automovel_model->obterTodosAutomoveis());
 		$this->load->helper('form');
 
-		$data['active_menu'] = 'books';
-		$data['content']     = 'frota/pesquisa';
-		$this->load->view('init',$data);
-		$this->load->helper('form');
+
 
 		$search = array();
 		$search['fabricante'] = $this->input->get('fabricante')??"";
