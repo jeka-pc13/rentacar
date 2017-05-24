@@ -9,19 +9,6 @@ class Carro {
 	public $fabricante;
 	public $cor;
 	public $disponibilidade;
-    public $PruebaDeFuego = 1;
-
-	// public function __construct($id, $modelo, $fabricante, $cor, $disponibilidade){
-	// 	$this->id =$id;
-	// 	$this->modelo =$modelo;
-	// 	$this->fabricante =$fabricante;
-	// 	$this->cor =$cor;
- //        $this->disponibilidade =$disponibilidade;
-	// 	$this->PruebaDeFuego = "Hey Beauty";
-
-	// }
-
-
 
     /**
      * Gets the value of id.
@@ -134,7 +121,12 @@ class Carro {
     }
 
     public function imprimeApagar(){
-    	return "";
+    	if (!$this->disponibilidade) {
+            return '<a href="#" class="btn btn-sm btn-danger disabled"><span class="glyphicon glyphicon-trash"></span> Apagar livro</a>
+';
+        }
+        return "";
+
     }
 
     public function imprimeMatriculaFormatada(){
