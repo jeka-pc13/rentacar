@@ -17,14 +17,14 @@ class Frota extends CI_Controller {
 	 */
 	public function pesquisa(){
 		$this->load->helper('form');
-var_dump($this->input->get()??"");
+		var_dump($this->input->get()??"");
 		$search = array();
-		$filtro= $this->input->get($filtro)??"";
-		$search[$filtro] = $this->input->get($search)??"";
+		$filtro= $this->input->get('filtro')??"";
+		$search[$filtro] = $this->input->get('search')??"";
 		//$search['matricula'] = $this->input->get('search')??"";	
 		//$search['modelo'] = $this->input->get('search')??"";
 
-			
+
 
 
 		$this->load->library('pagination');
