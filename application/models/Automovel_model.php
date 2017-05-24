@@ -76,6 +76,9 @@ class Automovel_model extends CI_Model {
 			->order_by("autos.id");
 			// ->limit($limit,$offset);
 			return $this->db->get()->result();
+
+			// $this->load->library('carro');
+			// return $this->db->get()->custom_result_object('Carro');
 		}
 
 
@@ -141,5 +144,38 @@ class Automovel_model extends CI_Model {
 		}
 			//var_dump($list);
 		return implode(",", $list);
+	}
+
+	/**
+	 * { function_description }
+	 *
+	 * @param      integer  $id     The identifier
+	 * @param      array    $data   array asociativo com os valores a atualiza,
+	 *                              as key possiveis para o array são:
+	 *                              modelo_id, cor_id, disponibilidade,
+	 *                              matricula
+	 *
+	 * @return     <type>   ( description_of_the_return_value )
+	 */
+	public function editarAutomovel(int $id, array $data){
+		$this->db->where('id', $id);
+		// remover items do array com chaves como id, cremovido ou algo fora das
+		// keys possiveis
+		$this->db->update('automoveis',$data);
+		return $this->db->affected_rows();
+	}
+
+	/**
+	 * remove um automovel da base de dados alterando o seu booleano de removido
+	 *
+	 * @param      integer  $id     The identifier
+	 *
+	 * @return     <type>   ( description_of_the_return_value )
+	 */
+	public function removerAutomovel(int $id){
+		$this->db->where('id', $id);
+		$this->db->set('cremovido', 1);
+		$this->db->update('automoveis');
+		return $this->db->affected_rows();
 	}
 }

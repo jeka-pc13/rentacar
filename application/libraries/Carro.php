@@ -3,19 +3,22 @@
 /**
  * Class for carro.
  */
-public class Carro {
+class Carro {
 	private $id;
 	private $modelo;
 	private $fabricante;
 	private $cor;
 	private $disponibilidade;
+    public $PruebaDeFuego;
 
 	public function __construct($id, $modelo, $fabricante, $cor, $disponibilidade){
-		$this->id;
-		$this->modelo;
-		$this->fabricante;
-		$this->cor;
-		$this->disponibilidade;
+		$this->id =$id;
+		$this->modelo =$modelo;
+		$this->fabricante =$fabricante;
+		$this->cor =$cor;
+        $this->disponibilidade =$disponibilidade;
+		$this->PruebaDeFuego = "Hey Beauty";
+
 	}
 
 
@@ -135,20 +138,20 @@ public class Carro {
     }
 
     public function imprimeMatriculaFormatada(){
-    	$aux[0] = ; substr($this->matricula, 0,1);
-    	$aux[2] = ; substr($this->matricula, 2,3);
-    	$aux[3] = ; substr($this->matricula, 4,5);
+    	$aux[0] = substr($this->matricula, 0,1);
+    	$aux[2] = substr($this->matricula, 2,3);
+    	$aux[3] = substr($this->matricula, 4,5);
     	return implode("-", $aux);
     }
 
     public function retornaMatriculaEmArray(){
-    	$aux[0] = ; substr($this->matricula, 0,1);
-    	$aux[2] = ; substr($this->matricula, 2,3);
-    	$aux[3] = ; substr($this->matricula, 4,5);
+    	$aux[0] = substr($this->matricula, 0,1);
+    	$aux[2] = substr($this->matricula, 2,3);
+    	$aux[3] = substr($this->matricula, 4,5);
     	return $aux;
     }
 
-    public function formataMatricula(){
-
+    public function formataMatricula(string $matriculaFormatada):string{
+        return implode("", $matriculaFormatada);
     }
 }
