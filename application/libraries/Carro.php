@@ -4,22 +4,22 @@
  * Class for carro.
  */
 class Carro {
-	private $id;
-	private $modelo;
-	private $fabricante;
-	private $cor;
-	private $disponibilidade;
-    public $PruebaDeFuego;
+	public $id;
+	public $modelo;
+	public $fabricante;
+	public $cor;
+	public $disponibilidade;
+    public $PruebaDeFuego = 1;
 
-	public function __construct($id, $modelo, $fabricante, $cor, $disponibilidade){
-		$this->id =$id;
-		$this->modelo =$modelo;
-		$this->fabricante =$fabricante;
-		$this->cor =$cor;
-        $this->disponibilidade =$disponibilidade;
-		$this->PruebaDeFuego = "Hey Beauty";
+	// public function __construct($id, $modelo, $fabricante, $cor, $disponibilidade){
+	// 	$this->id =$id;
+	// 	$this->modelo =$modelo;
+	// 	$this->fabricante =$fabricante;
+	// 	$this->cor =$cor;
+ //        $this->disponibilidade =$disponibilidade;
+	// 	$this->PruebaDeFuego = "Hey Beauty";
 
-	}
+	// }
 
 
 
