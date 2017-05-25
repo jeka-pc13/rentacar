@@ -67,7 +67,7 @@
   							<td><?php echo $auto->modelo;?></td>
   							<td><?php echo $auto->cor;?></td>
   							<td><?php echo $auto->matricula;?></td>
-  							<td><?php echo $auto->disponibilidade;?></td>
+  							<td><?php echo $auto->imprimeDisponibilidade();?></td>
   							<td class="actions">
   								<button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
   									<span class="glyphicon glyphicon-pencil"></span>

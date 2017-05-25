@@ -123,29 +123,7 @@ class Automovel_model extends CI_Model {
 		return $this->db->get()->result();
 	}
 
-	/**
-	 * retorna uma listagem (string) com todas as matriculas armazenadas na base de dados
-	 *
-	 * @return     <type>  ( description_of_the_return_value )
-	 */
-	public function obterListaMatriculas():string{
-		$select = "autos.matricula";
-
-		$this->db->select($select)
-		->from("automoveis.automoveis autos")
-		->where("autos.matricula IS NOT NULL")
-		->order_by("autos.id");
-			// ->limit($limit,$offset);
-		$result= $this->db->get()->result_array();
-			//var_dump($result);
-		$list = array();
-
-		foreach ($result as $key => $matricula) {
-			$list[] = $matricula["matricula"];
-		}
-			//var_dump($list);
-		return implode(",", $list); 
-	}
+	
 
 	/**
 	 * { function_description }
@@ -183,11 +161,12 @@ class Automovel_model extends CI_Model {
 
 	public function create($data){
 		//echo "estoy en funcion create";
+		
 		$automovel = array(
 			'modelo_id'=>$data['modelo'],
 			'cor_id'=>$data['cor'],
 			'disponibilidade'=>$data['estado'],
-			'matricula'=>$data['matricula']
+			'matricula'=>strtoupper($data['matricula'])
 			);
 		$this->db->insert('automoveis', $automovel);
 		return $carto_id = $this->db->insert_id();
