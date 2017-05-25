@@ -1,14 +1,18 @@
 <div class="container">
 	<div class="row">
-	<?php var_dump($auto) ?>
+		<?php var_dump($auto) ?>
 		<div class="col-md-6 col-md-offset-3">
-			<?php echo validation_errors(); ?>
+			<?php //echo validation_errors(); ?>
 			<?php echo form_open('frota/'.$formulario);?>
+			
 			<div class="form-group">
 				<label for="modelo" class="col-sm-2 control-label">Modelo </label>
 				<select class="form-control" name="modelo" id="modelo" required>
+					<option value="" disabled selected> -- Escolha uma opção -- </option>
 					<?php foreach ($modelos as $modelo): ?>
-						<option <?php echo set_select('modelo', $auto->modelo_id); ?> value="<?php echo $modelo->id; ?>"><?php echo $modelo->nome; ?></option>
+						<option <?php echo set_select('modelo', $auto->modelo_id, ($modelo->id == $auto->modelo_id)); ?> value="<?php echo $modelo->id; ?>">
+							<?php echo $modelo->nome; ?>
+						</option>
 					<?php endforeach ?>
 				</select>
 				<?php echo form_error('modelo'); ?>
@@ -17,9 +21,12 @@
 			<div class="form-group">
 				<label for="cor" class="col-sm-2 control-label">Cor </label>
 				<select class="form-control" name="cor" id="cor" required>
+					<option value="" disabled selected> -- Escolha uma opção -- </option>
 					<?php foreach ($cores as $cor): ?>
-						<option value="<?php echo $cor->id; ?>" <?php echo set_select('cor',$cor->id, False); ?> > <?php echo $cor->nome; ?></option>
-					<?php endforeach ?>
+						<option <?php echo set_select('cor',$auto->cor_id, ($cor->id == $auto->cor_id)); ?> value="<?php echo $cor->id; ?>"> 
+							<?php echo $cor->nome; ?>
+						</option>
+					<?php endforeach; ?>
 				</select>
 				<?php echo form_error('cor'); ?>
 			</div>
