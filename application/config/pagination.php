@@ -22,7 +22,7 @@
 // $config['base_url'] = '';
 $config['per_page'] = ITEMS_PER_PAGE; //constante definida em constants.php
 $config['uri_segment'] = 3;
-$config['num_links'] = 9;
+$config['num_links'] = 5;
 $config['page_query_string'] = FALSE;
 // $config['use_page_numbers'] = TRUE;
 $config['query_string_segment'] = 'page';

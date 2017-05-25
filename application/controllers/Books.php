@@ -117,7 +117,7 @@ class Books extends CI_Controller {
 
 
 		$data['active_menu'] = 'books';
-		$data['content']     = 'rentacar/index';
+		$data['content']     = 'books/index';
 		//add values from the form
 		$this->load->view('init',$data);
 

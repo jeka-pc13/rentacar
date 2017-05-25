@@ -8,6 +8,9 @@ class Publico extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->model('Automovel_model');
+
+		$this->load->model('modelos_model');
+		$this->modelos_model->init(array('tabela' => "modelos"));
 			// var_dump($this->db);
 			// var_dump($this->db->conn_id)
 	}
@@ -39,8 +42,10 @@ class Publico extends CI_Controller {
 
 	public function contacto(){
 		$search = array('fabricante' => "Toyota");
+		var_dump($this->modelos_model->getAll());
+		
 		// $search = array('matricula' => "v");
-		var_dump($this->Automovel_model->obterAutomoveisPorFiltro($search));
+		//var_dump($this->Automovel_model->obterAutomoveisPorFiltro($search));
 		//var_dump($this->Automovel_model->obterTodosAutomoveis());
 		$data['active_menu'] = 'contact';
 		$data['content']     = 'contacto';
