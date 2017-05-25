@@ -18,6 +18,7 @@ class Frota extends CI_Controller {
 
 		$this->load->library("session");
 		$this->load->helper('form');
+		$this->load->library('form_validation');
 	}
 	
 	/**
@@ -49,7 +50,7 @@ class Frota extends CI_Controller {
 
 		// $data['cores']= $this->input->get('cores');//ALTERAR
 		// $data['fabricantes']= $this->input->get('fabricantes');//ALTERAR
-  //       $data['modelos']= $this->input->get('modelos');
+  		// $data['modelos']= $this->input->get('modelos');
 
 		$data['search_results_count'] = $config['total_rows'];
 		$data['search_pagination'] = $this->pagination->create_links();
@@ -70,16 +71,92 @@ class Frota extends CI_Controller {
 
 	}
 
-	/*
+	
 
-	public function editar($id_automovel = 0){
-		$data['id_automovel'] = $id_automovel;
-		$data['active_menu'] = 'frota';
-		$data['content']     = 'frota/editar';
-		$this->load->view('init',$data);
+	public function editar($id_automovel = 1){
+		var_dump($this->automovel_model->getCarroById($id_automovel));
+		$whiteListModelos = $this->modelos_model->getListID();
+		$whiteListCores = $this->cores_model->getListID();
+		$config = array(
+			array(
+				'field' => 'modelo',
+				'label' => 'Modelo',
+				'rules' => 'required|in_list['.$whiteListModelos.']',
+				'errors' => array(
+					'required' => 'É obrigatório indicar um %s.',
+					'in_list' => 'É obrigatório indicar um %s da lista.',
+					'alpha_numeric_spaces' => 'Contém caracteres inválidos'
+					)
+				),
+			array(
+				'field' => 'matricula',
+				'label' => 'Matrícula',
+				'rules' => 'required|exact_length[8]|is_unique[automoveis.matricula]|validateMatricula',
+				'errors' => array(
+					'required' => 'É obrigatório inserir uma %s.',
+					'exact_length' => 'Verifique o número de caracteres(XX-XX-XX)',
+					'is_unique' => 'Ops! Esta %s já está registrada!',
+					'validateMatricula' => 'Ops! Este formato de %s não é válido!'
+					)
+				),
+			array(
+				'field' => 'cor',
+				'label' => 'Cor',
+				'rules' => 'required|in_list['.$whiteListCores.']',
+				'errors' => array(
+					'required' => 'É obrigatório escolher uma %s.',
+					'in_list' => 'É obrigatório escolher uma %s da lista.',
+					)
+				),
+			array(
+				'field' => 'estado',
+				'label' => 'Disponilidade',
+				'rules' => 'required',
+				'errors' => array(
+					'required' => 'É obrigatório indicar a %s do automóvel.',
+					)
+				)
+			);
 
+		$this->form_validation->set_rules($config);
+
+		//$data = array();
+		//para executar as validaçoes
+		if ($this->form_validation->run() === FALSE)
+		{			
+			$data['cores'] = $this->cores_model->getAll();
+			$data['fabricantes'] = $this->fabricantes_model->getAll();
+			$data['modelos'] = $this->modelos_model->getAll();
+
+			$data['active_menu'] = 'books';
+			$data['id_automovel'] = $id_automovel;
+			$data['content']     = 'frota/adicionar';
+			$data['formulario']     = 'editar';
+			$data['auto']     = $this->automovel_model->getCarroById($id_automovel);
+	
+			$this->load->view('init',$data);
+		}else{
+        	// Adiciona livro a database
+			
+			//var_dump($this->input->post());
+			$datos = array(
+				"modelo"=> $this->input->post('modelo'),
+				"cor"=> $this->input->post('cor'),
+				"estado"=> $this->input->post('estado'),
+				"matricula"=> $this->input->post('matricula')
+				);
+			$this->automovel_model->create($datos);
+			
+			// $data['active_menu'] = 'books';
+			// $data['content']     = 'frota/pesquisa';
+			// $data['success']     = true;
+			// $this->load->view('init',$data);      	
+			//$this->pesquisa();
+			$this->session->set_flashdata('event', 'Automóvel criado com sucesso!');
+			redirect('frota/pesquisa');
+		}	
 	}
-
+/*
 	public function remover($id_automovel = 0){
 		$data['id_automovel'] = $id_automovel;
 		$data['active_menu'] = 'frota';
@@ -89,20 +166,6 @@ class Frota extends CI_Controller {
 	}
 */
 	public function adicionar(){
-		//var_dump($this->input->post());	
-
-		$this->load->model('cores_model');
-		$this->cores_model->init(array('tabela' =>"cores"));
-
-		$this->load->model('fabricantes_model');
-		$this->fabricantes_model->init(array('tabela' =>"fabricantes"));
-
-		$this->load->model('modelos_model');
-		$this->modelos_model->init(array('tabela' =>"modelos"));
-
-		$this->load->helper('form');
-		$this->load->library('form_validation');
-
 		//$this->form_validation->set_rules('title', 'Title', 'required');
 		//$this->form_validation->set_error_delimiters('<div class="alert alert-danger page-alert">', '</div>');
 		$whiteListModelos = $this->modelos_model->getListID();
@@ -160,6 +223,7 @@ class Frota extends CI_Controller {
 
 			$data['active_menu'] = 'books';
 			$data['content']     = 'frota/adicionar';
+			$data['formulario']     = 'adicionar';
 			$this->load->view('init',$data);
 		}else{
         	// Adiciona livro a database

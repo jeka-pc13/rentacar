@@ -17,6 +17,7 @@ class Publico extends CI_Controller {
 
 		$this->load->model('fabricantes_model');
 		$this->fabricantes_model->init(array('tabela' => "fabricantes"));
+
 			// var_dump($this->db);
 			// var_dump($this->db->conn_id)
 	}
@@ -48,9 +49,7 @@ class Publico extends CI_Controller {
 
 	public function contacto(){
 		$search = array('fabricante' => "Toyota");
-		// var_dump($this->modelos_model->getListID());
-		// var_dump($this->cores_model->getListID());
-		// var_dump($this->fabricantes_model->getListID());
+		// 
 		
 		// $search = array('matricula' => "v");
 		//var_dump($this->Automovel_model->obterAutomoveisPorFiltro($search));

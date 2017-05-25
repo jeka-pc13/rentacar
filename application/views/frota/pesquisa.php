@@ -69,9 +69,9 @@
   							<td><?php echo $auto->matricula;?></td>
   							<td><?php echo $auto->imprimeDisponibilidade();?></td>
   							<td class="actions">
-  								<button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >
+  								<a href="<?php echo base_url('frota/editar/'.$auto->id) ?>" class="btn btn-primary btn-xs">
   									<span class="glyphicon glyphicon-pencil"></span>
-  								</button>
+  								</a>
   								<button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button>
   							</td>
 
