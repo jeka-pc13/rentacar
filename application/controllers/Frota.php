@@ -22,6 +22,7 @@ class Frota extends CI_Controller {
 	 * @return [type] [description]
 	 */
 	public function pesquisa(){
+
 		$this->load->helper('form');
 		$search = array();
 		$filtro= $this->input->get('filtro')??"";
@@ -45,9 +46,9 @@ class Frota extends CI_Controller {
 		$this->pagination->initialize($config);
 		
 
-		$data['title']= $this->input->get('title');//ALTERAR
-		$data['author']= $this->input->get('author');//ALTERAR
-        //$data['isbn']= $this->input->get('isbn');
+		// $data['cores']= $this->input->get('cores');//ALTERAR
+		// $data['fabricantes']= $this->input->get('fabricantes');//ALTERAR
+  //       $data['modelos']= $this->input->get('modelos');
 
 		$data['search_results_count'] = $config['total_rows'];
 		$data['search_pagination'] = $this->pagination->create_links();
@@ -58,7 +59,9 @@ class Frota extends CI_Controller {
 		$data_modal['fabricantes'] = $this->fabricantes_model->getAll();
 		$data_modal['modelos'] = $this->modelos_model->getAll();
 		$data['create_modal'] = $this->load->view('frota/adicionar', $data_modal, TRUE);
-
+		if ($this->input->post('success')??FALSE) {
+			$data_modal['success'] = true;
+		}
 		$data['active_menu'] = 'books';
 		$data['content']     = 'frota/pesquisa';
 		//add values from the form
@@ -131,7 +134,7 @@ class Frota extends CI_Controller {
 					)
 				),
 			array(
-				'field' => 'disponibilidade',
+				'field' => 'estado',
 				'label' => 'Disponilidade',
 				'rules' => 'required',
 				'errors' => array(
@@ -140,13 +143,12 @@ class Frota extends CI_Controller {
 				)
 			);
 
-		//$this->form_validation->set_rules($config);
+		$this->form_validation->set_rules($config);
 
 		//$data = array();
 		//para executar as validaçoes
 		if ($this->form_validation->run() === FALSE)
 		{			
-			echo "entra aqui ERROR adicionar";
 			$data['cores'] = $this->cores_model->getAll();
 			$data['fabricantes'] = $this->fabricantes_model->getAll();
 			$data['modelos'] = $this->modelos_model->getAll();
@@ -155,14 +157,23 @@ class Frota extends CI_Controller {
 			$data['content']     = 'frota/adicionar';
 			$this->load->view('init',$data);
 		}else{
-        	// Adicona livro a database
-			echo "Entra aqui porque no hay errores";
-			$this->automovel_model->create($this->input->post('modelo'),$this->input->post('cor'),$this->input->post('disponibilidade'),$this->input->post('fabricante'));
+        	// Adiciona livro a database
 			
-			$data['active_menu'] = 'books';
-			$data['content']     = 'frota/pesquisa';
-			$data['success']     = true;
-			$this->load->view('init',$data);      	
+			//var_dump($this->input->post());
+			$datos = array(
+				"modelo"=> $this->input->post('modelo'),
+				"cor"=> $this->input->post('cor'),
+				"estado"=> $this->input->post('estado'),
+				"matricula"=> $this->input->post('matricula')
+				);
+			$this->automovel_model->create($datos);
+			
+			// $data['active_menu'] = 'books';
+			// $data['content']     = 'frota/pesquisa';
+			// $data['success']     = true;
+			// $this->load->view('init',$data);      	
+			//$this->pesquisa();
+			redirect('frota/pesquisa'.$this->input->post('success'));
 		}	
 	}
 }

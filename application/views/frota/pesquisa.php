@@ -47,7 +47,7 @@
   		</nav><!-- navbar -->
 
 
-  		<h2>Book list <small><?php echo $search_results_count; ?></small></h2>       
+  		<h2>Lista de automóveis <small><?php echo $search_results_count; ?></small></h2>       
   		<div class="panel">
   			<table class="table table-striped table-bordered  table-hover">
   				<thead>

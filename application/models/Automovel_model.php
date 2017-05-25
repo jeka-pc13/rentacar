@@ -182,14 +182,14 @@ class Automovel_model extends CI_Model {
 
 
 	public function create($data){
-		echo "estoy en funcion create";
+		//echo "estoy en funcion create";
 		$automovel = array(
 			'modelo_id'=>$data['modelo'],
 			'cor_id'=>$data['cor'],
-			'disponibilidade'=>$data['disponibilidade'],
+			'disponibilidade'=>$data['estado'],
 			'matricula'=>$data['matricula']
 			);
-		var_dump($this->db->insert('automovel', $automovel));
+		$this->db->insert('automoveis', $automovel);
 		return $carto_id = $this->db->insert_id();
 	}  
 }

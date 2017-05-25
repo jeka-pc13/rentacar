@@ -33,10 +33,10 @@
 
 			<div class="form-group">
 				<label class="radio-inline">
-					<input type="radio" name="estado" id="estado" value="1">Disponível
+					<input type="radio" name="estado" id="d" value="1">Disponível
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="estado" id="estado" value="0">Ocupado
+					<input type="radio" name="estado" id="o" value="0">Ocupado
 				</label>
 				<?php echo form_error('estado'); ?>
 			</div>
