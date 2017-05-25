@@ -73,8 +73,8 @@ class Automovel_model extends CI_Model {
 			->join("automoveis.modelos m", "autos.modelo_id = m.id")//modelo 
 			->join("automoveis.fabricantes f", "m.fabricante_id = f.id")
 			->where("autos.cremovido = 0")
-			->order_by("autos.id");
-			// ->limit($limit,$offset);
+			->order_by("autos.id")
+		 	->limit($limit,$offset);
 			
 			//return $this->db->get()->result();
 
@@ -179,4 +179,17 @@ class Automovel_model extends CI_Model {
 		$this->db->update('automoveis');
 		return $this->db->affected_rows();
 	}
+
+
+	public function create($data){
+		echo "estoy en funcion create";
+		$automovel = array(
+			'modelo_id'=>$data['modelo'],
+			'cor_id'=>$data['cor'],
+			'disponibilidade'=>$data['disponibilidade'],
+			'matricula'=>$data['matricula']
+			);
+		var_dump($this->db->insert('automovel', $automovel));
+		return $carto_id = $this->db->insert_id();
+	}  
 }

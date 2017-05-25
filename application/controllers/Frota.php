@@ -23,14 +23,11 @@ class Frota extends CI_Controller {
 	 */
 	public function pesquisa(){
 		$this->load->helper('form');
-		//var_dump($this->input->get()??"");
 		$search = array();
 		$filtro= $this->input->get('filtro')??"";
+		$search['filtro'] = $this->input->get('filtro')??"";
+		$search['search'] = $this->input->get('search')??"";
 		$search[$filtro] = $this->input->get('search')??"";
-		//var_dump($search);
-		//$search['matricula'] = $this->input->get('search')??"";	
-		//$search['modelo'] = $this->input->get('search')??"";
-
 		$this->load->library('pagination');
 		$form_url = "frota/pesquisa";
 
@@ -43,10 +40,10 @@ class Frota extends CI_Controller {
 		$config['base_url'] = base_url($form_url);//redefinido para a paginação
 		$config['enable_query_strings']= TRUE;
 		$config['page_query_string']= true;
-
+		$config['per_page'] = ITEMS_PER_PAGE;
 		$config['total_rows'] = $this->automovel_model->getAutomoveisListCount($search);
 		$this->pagination->initialize($config);
-		$config['per_page'] = ITEMS_PER_PAGE;
+		
 
 		$data['title']= $this->input->get('title');//ALTERAR
 		$data['author']= $this->input->get('author');//ALTERAR
@@ -57,10 +54,10 @@ class Frota extends CI_Controller {
 		$data['search_results'] = $this->automovel_model->obterAutomoveisPorFiltro($search, $offset);
 
 		//carregar view
-		/*$data_modal['cores'] = $this->Cores_model->getAll();
-		$data_modal['modelos'] = $this->Modelos_model->getAll();
-		$data_modal['fabricantes'] = $this->Fabricantes_model->getAll();
-		$data['create_modal'] = $this->load->view('frota/criar', $data_modal, TRUE);*/
+		$data_modal['cores'] = $this->cores_model->getAll();
+		$data_modal['fabricantes'] = $this->fabricantes_model->getAll();
+		$data_modal['modelos'] = $this->modelos_model->getAll();
+		$data['create_modal'] = $this->load->view('frota/adicionar', $data_modal, TRUE);
 
 		$data['active_menu'] = 'books';
 		$data['content']     = 'frota/pesquisa';
@@ -147,21 +144,24 @@ class Frota extends CI_Controller {
 
 		//$data = array();
 		//para executar as validaçoes
-		if ($this->form_validation->run() == FALSE)
+		if ($this->form_validation->run() === FALSE)
 		{			
+			echo "entra aqui ERROR adicionar";
 			$data['cores'] = $this->cores_model->getAll();
 			$data['fabricantes'] = $this->fabricantes_model->getAll();
 			$data['modelos'] = $this->modelos_model->getAll();
-				
+
 			$data['active_menu'] = 'books';
 			$data['content']     = 'frota/adicionar';
 			$this->load->view('init',$data);
 		}else{
         	// Adicona livro a database
-			$this->automovel_model->adicionar($this->input->post());
-
+			echo "Entra aqui porque no hay errores";
+			$this->automovel_model->create($this->input->post('modelo'),$this->input->post('cor'),$this->input->post('disponibilidade'),$this->input->post('fabricante'));
+			
 			$data['active_menu'] = 'books';
 			$data['content']     = 'frota/pesquisa';
+			$data['success']     = true;
 			$this->load->view('init',$data);      	
 		}	
 	}

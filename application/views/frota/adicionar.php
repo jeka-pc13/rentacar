@@ -1,8 +1,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-
-			<?php echo form_open('frota/pesquisa');?>
+			<?php echo validation_errors(); ?>
+			<?php echo form_open('frota/adicionar');?>
 			<div class="form-group">
 				<label for="modelo" class="col-sm-2 control-label">Modelo </label>
 				<select class="form-control" name="modelo" id="modelo" required>
@@ -42,7 +42,7 @@
 			</div>
 
 			<div class="form-group">
-				<button type="reset" class="btn btn-warning form-inline">Cancelar</button>
+				<a href="<?php echo base_url("frota/pesquisa") ?>" class="btn btn-warning">Cancelar</a>
 				<button type="submit" class="btn btn-primary form-inline">Guardar</button>
 			</div>
 

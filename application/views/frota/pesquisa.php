@@ -1,7 +1,7 @@
   <div class="container">
   	<div class="panel">
 
-  		<?php if ($success?? true):?>
+  		<?php if ($success?? false):?>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title text-center">Obrigado!</h3>
