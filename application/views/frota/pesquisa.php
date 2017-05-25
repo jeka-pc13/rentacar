@@ -1,13 +1,13 @@
   <div class="container">
   	<div class="panel">
 
-  		<?php if ($success?? false):?>
+  		<?php if ($this->session->has_userdata("event")):?>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title text-center">Obrigado!</h3>
 				</div>
 				<div class="panel-body text-center">
-					<legend>Os Dados Foram Submetidos Com Sucesso</legend>
+					<legend><?php echo $this->session->event?></legend>
 				</div>
 			</div>
 		<?php endif ?>

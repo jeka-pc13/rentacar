@@ -25,7 +25,7 @@
 
 			<div class="form-group">
 				<label for="matricula">Matricula </label>
-				<input type="text" class="form-control" id="matricula" name="matricula" placeholder="AA-00-AA" maxlength="8" required>
+				<input type="text" class="form-control" id="matricula" name="matricula" placeholder="AA-00-99" maxlength="8" required>
 				<?php echo form_error('matricula'); ?>
 			</div>
 

@@ -15,6 +15,9 @@ class Frota extends CI_Controller {
 
 		$this->load->model('modelos_model');
 		$this->modelos_model->init(array('tabela' =>"modelos"));
+
+		$this->load->library("session");
+		$this->load->helper('form');
 	}
 	
 	/**
@@ -22,8 +25,6 @@ class Frota extends CI_Controller {
 	 * @return [type] [description]
 	 */
 	public function pesquisa(){
-
-		$this->load->helper('form');
 		$search = array();
 		$filtro= $this->input->get('filtro')??"";
 		$search['filtro'] = $this->input->get('filtro')??"";
@@ -173,7 +174,8 @@ class Frota extends CI_Controller {
 			// $data['success']     = true;
 			// $this->load->view('init',$data);      	
 			//$this->pesquisa();
-			redirect('frota/pesquisa'.$this->input->post('success'));
+			$this->session->set_flashdata('event', 'Automóvel criado com sucesso!');
+			redirect('frota/pesquisa');
 		}	
 	}
 }
