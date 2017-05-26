@@ -74,7 +74,11 @@ class Frota extends CI_Controller {
 	
 
 	public function editar($id_automovel = 1){
-		var_dump($this->automovel_model->getCarroById($id_automovel));
+		var_dump($id_automovel);
+		// VALIDAR QUE ESTE ID SEA VALIDO, CASO NO SER MANDAR A LA PAGINA
+		// ANTERIOR CON UN MENSAJE DE ERROR. SI ESTA CORRECTO ENTONCES SE
+		// CONTINUA CON EL PROCESAMIENTO
+		//var_dump($this->automovel_model->getCarroById($id_automovel));
 		$whiteListModelos = $this->modelos_model->getListID();
 		$whiteListCores = $this->cores_model->getListID();
 		$config = array(
@@ -91,11 +95,11 @@ class Frota extends CI_Controller {
 			array(
 				'field' => 'matricula',
 				'label' => 'Matrícula',
-				'rules' => 'required|exact_length[8]|is_unique[automoveis.matricula]|validateMatricula',
+				'rules' => 'required|exact_length[8]|validateMatricula',//|is_unique[automoveis.matricula]
 				'errors' => array(
 					'required' => 'É obrigatório inserir uma %s.',
 					'exact_length' => 'Verifique o número de caracteres(XX-XX-XX)',
-					'is_unique' => 'Ops! Esta %s já está registrada!',
+					// 'is_unique' => 'Ops! Esta %s já está registrada!',//HAY QUE REVISAR ESTO PARA EL ACTUALIZAR
 					'validateMatricula' => 'Ops! Este formato de %s não é válido!'
 					)
 				),
@@ -140,19 +144,20 @@ class Frota extends CI_Controller {
 			
 			//var_dump($this->input->post());
 			$datos = array(
-				"modelo"=> $this->input->post('modelo'),
-				"cor"=> $this->input->post('cor'),
-				"estado"=> $this->input->post('estado'),
+				"modelo_id"=> $this->input->post('modelo'),
+				"cor_id"=> $this->input->post('cor'),
+				"disponibilidade"=> $this->input->post('estado'),
 				"matricula"=> $this->input->post('matricula')
 				);
-			$this->automovel_model->create($datos);
+			//var_dump($datos);
+			$this->automovel_model->editarAutomovel($id_automovel, $datos);
 			
 			// $data['active_menu'] = 'books';
 			// $data['content']     = 'frota/pesquisa';
 			// $data['success']     = true;
 			// $this->load->view('init',$data);      	
 			//$this->pesquisa();
-			$this->session->set_flashdata('event', 'Automóvel criado com sucesso!');
+			$this->session->set_flashdata('event', 'Automóvel ATUALIZADO com sucesso!');
 			redirect('frota/pesquisa');
 		}	
 	}
