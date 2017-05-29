@@ -72,10 +72,7 @@
   								<a href="<?php echo base_url('frota/editar/'.$auto->id) ?>" class="btn btn-primary btn-xs">
   									<span class="glyphicon glyphicon-pencil"></span>
   								</a>
-  								<?php echo $auto->imprimeApagar() ?>
-                 <!--  <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button>
-  							</td> -->
-
+  								<button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" <?php if ($auto->disponibilidade == '0'){ ?> disabled <?php   } ?>><span class="glyphicon glyphicon-trash"></span></button>
   						</tr>
   					<?php endforeach; ?> 
   				</tbody>
