@@ -21,6 +21,11 @@ class Frota extends CI_Controller {
 		$this->load->library('form_validation');
 	}
 	
+	public function index(){
+		redirect('frota/pesquisa','refresh');
+	}
+
+
 	/**
 	 * Filtra a pesquisa
 	 * @return [type] [description]
@@ -105,9 +110,8 @@ class Frota extends CI_Controller {
 		$autoDummy->id =NULL;
 		$autoDummy->modelo_id =0;
 		$autoDummy->cor_id =0;
-		$autoDummy->disponibilidade =0;
+		$autoDummy->disponibilidade =1;
 		$autoDummy->matricula =NULL;
-
 
 		$data['cores'] = $this->cores_model->getAll();
 		$data['fabricantes'] = $this->fabricantes_model->getAll();
@@ -131,11 +135,9 @@ class Frota extends CI_Controller {
 		if (is_null($id)){//modo criacao
 			$regraMatricula = "|is_unique[automoveis.matricula]";
 
-		}else{//modo edicao
+		}/*else{//modo edicao
 
-		}
-		
-
+		}*/
 		$config = array(
 			array(
 				'field' => 'modelo',
@@ -179,19 +181,11 @@ class Frota extends CI_Controller {
 
 		$this->form_validation->set_rules($config);
 
-		if ($this->form_validation->run() === FALSE)
-		{			
-			// $data['cores'] = $this->cores_model->getAll();
-			// $data['fabricantes'] = $this->fabricantes_model->getAll();
-			// $data['modelos'] = $this->modelos_model->getAll();
-
-			// $data['active_menu'] = 'books';
-			// $data['content']     = 'frota/adicionar';
-			// $this->load->view('init',$data);
-			// 
-			if (is_null($id)){
+		if ($this->form_validation->run() === FALSE){
+		//Passou todas as validacoes, pelo que se pode fazer o insert/update
+			if (is_null($id)){// se nao existe o id o pretendido e adicionar o novo automovel
 				$this->adicionar();
-			}else{
+			}else{//caso existir entao o pretendido e editar o automovel
 				$this->editar();
 			}
 
