@@ -105,5 +105,9 @@ class Publico extends CI_Controller {
 			$data['content']     = 'contacto';
 			$this->load->view('init',$data);
 		}
+		
+		function validate_captcha() { $recaptcha = trim($this->input->post('g-recaptcha-response')); $userIp= $this->input->ip_address(); $secret='6LehOiMUAAAAALsbB5YBw1rSU5Kg6iMMKA9Egbzw'; $data = array( 'secret' => "$secret", 'response' => "$recaptcha", 'remoteip' =>"$userIp" ); $verify = curl_init(); curl_setopt($verify, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify"); curl_setopt($verify, CURLOPT_POST, true); curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($data)); curl_setopt($verify, CURLOPT_SSL_VERIFYPEER, false); curl_setopt($verify, CURLOPT_RETURNTRANSFER, true); $response = curl_exec($verify); $status= json_decode($response, true); if(empty($status['success'])){ return FALSE; }else{ return TRUE; } }
+
+		$this->form_validation->set_rules('g-recaptcha-response', 'recaptcha validation', 'required|callback_validate_captcha'); $this->form_validation->set_message('validate_captcha', 'Please check the the captcha form');
 	}
 }
