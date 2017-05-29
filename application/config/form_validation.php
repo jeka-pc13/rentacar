@@ -19,7 +19,6 @@ function validateMatricula($matricula):bool{
 	$aux[3] = substr($matricula, 2,1);
 	$aux[4] = substr($matricula, 5,1);
 
-
 	if (is_numeric($aux[0]) && is_numeric($aux[1]) && ctype_alpha($aux[2]) && $aux[3] === "-" && $aux[4] === "-") {
 		return true;
 	}
@@ -27,8 +26,6 @@ function validateMatricula($matricula):bool{
 	if (is_numeric($aux[2]) && is_numeric($aux[1]) && ctype_alpha($aux[0]) && $aux[3] === "-" && $aux[4] === "-") {
 		return true;
 	}
-
-	
 
 	return FALSE;
 

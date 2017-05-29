@@ -75,92 +75,22 @@ class Frota extends CI_Controller {
 
 	public function editar($id_automovel = 1){
 		var_dump($id_automovel);
-		// VALIDAR QUE ESTE ID SEA VALIDO, CASO NO SER MANDAR A LA PAGINA
-		// ANTERIOR CON UN MENSAJE DE ERROR. SI ESTA CORRECTO ENTONCES SE
-		// CONTINUA CON EL PROCESAMIENTO
-		//var_dump($this->automovel_model->getCarroById($id_automovel));
+		
 		$whiteListModelos = $this->modelos_model->getListID();
 		$whiteListCores = $this->cores_model->getListID();
-		$config = array(
-			array(
-				'field' => 'modelo',
-				'label' => 'Modelo',
-				'rules' => 'required|in_list['.$whiteListModelos.']',
-				'errors' => array(
-					'required' => 'É obrigatório indicar um %s.',
-					'in_list' => 'É obrigatório indicar um %s da lista.',
-					'alpha_numeric_spaces' => 'Contém caracteres inválidos'
-					)
-				),
-			array(
-				'field' => 'matricula',
-				'label' => 'Matrícula',
-				'rules' => 'required|exact_length[8]|validateMatricula',//|is_unique[automoveis.matricula]
-				'errors' => array(
-					'required' => 'É obrigatório inserir uma %s.',
-					'exact_length' => 'Verifique o número de caracteres(XX-XX-XX)',
-					// 'is_unique' => 'Ops! Esta %s já está registrada!',//HAY QUE REVISAR ESTO PARA EL ACTUALIZAR
-					'validateMatricula' => 'Ops! Este formato de %s não é válido!'
-					)
-				),
-			array(
-				'field' => 'cor',
-				'label' => 'Cor',
-				'rules' => 'required|in_list['.$whiteListCores.']',
-				'errors' => array(
-					'required' => 'É obrigatório escolher uma %s.',
-					'in_list' => 'É obrigatório escolher uma %s da lista.',
-					)
-				),
-			array(
-				'field' => 'estado',
-				'label' => 'Disponilidade',
-				'rules' => 'required',
-				'errors' => array(
-					'required' => 'É obrigatório indicar a %s do automóvel.',
-					)
-				)
-			);
+		
+		$data['cores'] = $this->cores_model->getAll();
+		$data['fabricantes'] = $this->fabricantes_model->getAll();
+		$data['modelos'] = $this->modelos_model->getAll();
 
-		$this->form_validation->set_rules($config);
+		$data['active_menu'] = 'books';
+		$data['id_automovel'] = $id_automovel;
+		$data['content']     = 'frota/adicionar';
+		$data['formulario']     = 'editar';
+		$data['auto']     = $this->automovel_model->getCarroById($id_automovel);
+		$this->load->view('init',$data);
+	}	
 
-		//$data = array();
-		//para executar as validaçoes
-		if ($this->form_validation->run() === FALSE)
-		{			
-			$data['cores'] = $this->cores_model->getAll();
-			$data['fabricantes'] = $this->fabricantes_model->getAll();
-			$data['modelos'] = $this->modelos_model->getAll();
-
-			$data['active_menu'] = 'books';
-			$data['id_automovel'] = $id_automovel;
-			$data['content']     = 'frota/adicionar';
-			$data['formulario']     = 'editar';
-			$data['auto']     = $this->automovel_model->getCarroById($id_automovel);
-	
-			$this->load->view('init',$data);
-		}else{
-        	// Adiciona livro a database
-			
-			//var_dump($this->input->post());
-			$datos = array(
-				"modelo_id"=> $this->input->post('modelo'),
-				"cor_id"=> $this->input->post('cor'),
-				"disponibilidade"=> $this->input->post('estado'),
-				"matricula"=> $this->input->post('matricula')
-				);
-			//var_dump($datos);
-			$this->automovel_model->editarAutomovel($id_automovel, $datos);
-			
-			// $data['active_menu'] = 'books';
-			// $data['content']     = 'frota/pesquisa';
-			// $data['success']     = true;
-			// $this->load->view('init',$data);      	
-			//$this->pesquisa();
-			$this->session->set_flashdata('event', 'Automóvel ATUALIZADO com sucesso!');
-			redirect('frota/pesquisa');
-		}	
-	}
 /*
 	public function remover($id_automovel = 0){
 		$data['id_automovel'] = $id_automovel;
@@ -171,10 +101,41 @@ class Frota extends CI_Controller {
 	}
 */
 	public function adicionar(){
-		//$this->form_validation->set_rules('title', 'Title', 'required');
-		//$this->form_validation->set_error_delimiters('<div class="alert alert-danger page-alert">', '</div>');
+		$autoDummy = new stdClass();
+		$autoDummy->id =NULL;
+		$autoDummy->modelo_id =0;
+		$autoDummy->cor_id =0;
+		$autoDummy->disponibilidade =0;
+		$autoDummy->matricula =NULL;
+
+
+		$data['cores'] = $this->cores_model->getAll();
+		$data['fabricantes'] = $this->fabricantes_model->getAll();
+		$data['modelos'] = $this->modelos_model->getAll();
+
+		$data['active_menu'] = 'books';
+		$data['content']     = 'frota/adicionar';
+		$data['formulario']     = 'adicionar';
+		$data['id_automovel'] = NULL;
+		$data['auto']     = $autoDummy;
+		$this->load->view('init',$data);
+		
+	}
+
+	public function escrita(){
+		// $novo = $this->input->post('id')?? $this->input->post('id') : NULL;
 		$whiteListModelos = $this->modelos_model->getListID();
 		$whiteListCores = $this->cores_model->getListID();
+		$id = $this->input->post('id')?? NULL;
+		$regraMatricula = "";
+		if (!is_null($id)){
+			$regraMatricula = "|is_unique[automoveis.matricula]";
+			//echo "editando";
+		}else{
+			//echo "creando";
+		}
+		
+
 		$config = array(
 			array(
 				'field' => 'modelo',
@@ -189,7 +150,7 @@ class Frota extends CI_Controller {
 			array(
 				'field' => 'matricula',
 				'label' => 'Matrícula',
-				'rules' => 'required|exact_length[8]|is_unique[automoveis.matricula]|validateMatricula',
+				'rules' => 'required|exact_length[8]|validateMatricula'.$regraMatricula,
 				'errors' => array(
 					'required' => 'É obrigatório inserir uma %s.',
 					'exact_length' => 'Verifique o número de caracteres(XX-XX-XX)',
@@ -218,37 +179,40 @@ class Frota extends CI_Controller {
 
 		$this->form_validation->set_rules($config);
 
-		//$data = array();
-		//para executar as validaçoes
 		if ($this->form_validation->run() === FALSE)
 		{			
-			$data['cores'] = $this->cores_model->getAll();
-			$data['fabricantes'] = $this->fabricantes_model->getAll();
-			$data['modelos'] = $this->modelos_model->getAll();
+			// $data['cores'] = $this->cores_model->getAll();
+			// $data['fabricantes'] = $this->fabricantes_model->getAll();
+			// $data['modelos'] = $this->modelos_model->getAll();
 
-			$data['active_menu'] = 'books';
-			$data['content']     = 'frota/adicionar';
-			$data['formulario']     = 'adicionar';
-			$this->load->view('init',$data);
-		}else{
-        	// Adiciona livro a database
-			
-			//var_dump($this->input->post());
-			$datos = array(
-				"modelo"=> $this->input->post('modelo'),
-				"cor"=> $this->input->post('cor'),
-				"estado"=> $this->input->post('estado'),
-				"matricula"=> $this->input->post('matricula')
-				);
-			$this->automovel_model->create($datos);
-			
 			// $data['active_menu'] = 'books';
-			// $data['content']     = 'frota/pesquisa';
-			// $data['success']     = true;
-			// $this->load->view('init',$data);      	
-			//$this->pesquisa();
-			$this->session->set_flashdata('event', 'Automóvel criado com sucesso!');
-			redirect('frota/pesquisa');
-		}	
-	}
-}
+			// $data['content']     = 'frota/adicionar';
+			// $this->load->view('init',$data);
+			// 
+			if (!is_null($id)){
+				redirect('frota/editar');
+			//echo "editando";
+			}else{
+				redirect('frota/adicionar');
+			//echo "creando";
+			}
+
+		}else{// nesta fase sao passadas todas as validacoes, pelo que o pretendido e ou bem inserir o novo automovel ou bem atualizar o existente
+
+        	if ($this->input->post('id')) {//se o id existe e porque se trata de um update
+        		# code...
+        	}else{//caso contrario trata-se de um insert
+        		$datos = array(
+        			"modelo"=> $this->input->post('modelo'),
+        			"cor"=> $this->input->post('cor'),
+        			"estado"=> $this->input->post('estado'),
+        			"matricula"=> $this->input->post('matricula')
+        			);
+        		$this->automovel_model->create($datos);
+        		$this->session->set_flashdata('event', 'Automóvel criado com sucesso!');
+        	}
+
+        	redirect('frota/pesquisa');
+        }	
+     }
+  }

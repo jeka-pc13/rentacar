@@ -1,9 +1,9 @@
 <div class="container">
 	<div class="row">
-		<?php var_dump($auto) ?>
+		<?php var_dump($auto?? false) ?>
 		<div class="col-md-6 col-md-offset-3">
-			<?php //echo validation_errors(); ?>
-			<?php echo form_open('frota/'.$formulario);?>
+			<?php echo validation_errors(); ?>
+			<?php echo form_open('frota/escrita');?>
 			
 			<div class="form-group">
 				<label for="modelo" class="col-sm-2 control-label">Modelo </label>
@@ -53,7 +53,9 @@
 					<a href="<?php echo base_url("frota/pesquisa") ?>" class="btn btn-warning">Cancelar</a>
 					<button type="submit" class="btn btn-primary form-inline">Guardar</button>
 				</div>
-
+				<?php if (!is_null($auto->id)): ?>
+					<input type="hidden" name="id" value="<?php echo $auto->id ?>">
+				<?php endif ?>
 			</div>
 			<?php echo form_close(); ?>
 		</div>
