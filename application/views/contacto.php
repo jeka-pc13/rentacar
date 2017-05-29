@@ -13,49 +13,65 @@
 		</div>
 
 		<div class="col-md-4">
+			<div class="msg">
+				<?php
+				if (isset($message_display)) {
+					echo $message_display;
+				}
+				?>
+			</div>
 
-			<form class="form-horizontal">
-				<fieldset>
+			<!-- <form class="form-horizontal"> -->
+			<?php
+			$atributos = array(
+				'class'=>"form-horizontal",
+				'method' => 'POST'
+				);
+			echo form_open('publico/send_mail', $atributos);
+			?>
+			<fieldset>
 				<legend>Formulario de contacto</legend>
-					
-					<div class="form-group">
-						<label for="nome" class="col-lg-2 control-label">Nome</label>
-						<div class="col-lg-10">
-							<input type="text" class="form-control" id="nome" placeholder="nome" name="nome">
-						</div>
-					</div>
 
-					<div class="form-group">
-						<label for="email" class="col-lg-2 control-label">Email</label>
-						<div class="col-lg-10">
-							<input type="email" class="form-control" id="email" placeholder="Email" name="email">
-						</div>
-					</div>	
-					
-					
-					<div class="form-group">
-						<label for="mensagem" class="col-lg-2 control-label">Mensagem</label>
-						<div class="col-lg-10">
-							<textarea class="form-control" rows="3" id="mensagem" nome="mensagem"></textarea>
-							<span class="help-block">Escreva a sua mensagem</span>
-						</div>
+				<div class="form-group">
+					<label for="nome" class="col-lg-2 control-label">Nome</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="nome" placeholder="nome" name="nome">
+					</div>
+					<?php echo form_error('nome'); ?>
+				</div>
+
+				<div class="form-group">
+					<label for="email" class="col-lg-2 control-label">Email</label>
+					<div class="col-lg-10">
+						<input type="email" class="form-control" id="email" placeholder="Email" name="email">
+					</div>
+					<?php echo form_error('email'); ?>
+				</div>	
+
+
+				<div class="form-group">
+					<label for="mensagem" class="col-lg-2 control-label">Mensagem</label>
+					<div class="col-lg-10">
+						<textarea class="form-control" rows="3" id="mensagem" name="mensagem" placeholder="Escreva a sua mensagem"></textarea><?php echo form_error('mensagem'); ?>	
 					</div>
 					
-					<div class="form-group">
-						<div class="col-lg-10 col-lg-offset-2">
-							<button type="reset" class="btn btn-default">Cancel</button>
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+						<button type="reset" class="btn btn-default">Cancel</button>
+						<button type="submit" class="btn btn-primary">Submit</button>
 					</div>
-				</fieldset>
-			</form>
+				</div>
+			</fieldset>
+			<?php echo form_close(); ?>
 		</div>
 	</div>
 	<br>
 	<div class="row">
-	<div class="col-md-10 col-md-offset-1 well">
-		Super Painel com redes sociais
-	</div>
+		<div class="col-md-10 col-md-offset-1 well">
+			Super Painel com redes sociais
+		</div>
 		
 	</div>
 </div>
