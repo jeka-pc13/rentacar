@@ -98,12 +98,20 @@ class Frota extends CI_Controller {
 
 
 	public function remover($id_automovel=1){
+
 		$data['id_automovel'] = $id_automovel;
 		$data['active_menu'] = 'frota';
 		$data['content']     = 'frota/remover';
 		$data['auto']     = $this->automovel_model->getCarroById($id_automovel);
-		$this->load->view('init',$data);
+		
+		$data['create_modal'] = $this->load->view('books/create', $data, TRUE);
+		$this->load->view('frota/remover',$data);
 
+	}
+
+	public function delete($id_automovel=NULL){
+		$this->automovel_model->removerAutomovel($id_automovel);
+		redirect('frota/pesquisa','refresh');
 	}
 
 	public function adicionar(){
