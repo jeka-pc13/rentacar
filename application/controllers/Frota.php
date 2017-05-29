@@ -199,20 +199,27 @@ class Frota extends CI_Controller {
 
 		}else{// nesta fase sao passadas todas as validacoes, pelo que o pretendido e ou bem inserir o novo automovel ou bem atualizar o existente
 
-        	if ($this->input->post('id')) {//se o id existe e porque se trata de um update
-        		# code...
-        	}else{//caso contrario trata-se de um insert
-        		$datos = array(
-        			"modelo"=> $this->input->post('modelo'),
-        			"cor"=> $this->input->post('cor'),
-        			"estado"=> $this->input->post('estado'),
-        			"matricula"=> $this->input->post('matricula')
-        			);
-        		$this->automovel_model->create($datos);
-        		$this->session->set_flashdata('event', 'Automóvel criado com sucesso!');
-        	}
+			if (!is_null($id)){//se o id existe e porque se trata de um update
+				$datos = array(
+					"modelo_id"=> $this->input->post('modelo'),
+					"cor_id"=> $this->input->post('cor'),
+					"disponibilidade"=> $this->input->post('estado'),
+					"matricula"=> $this->input->post('matricula')
+					);
+				$this->automovel_model->editarAutomovel($id, $datos);
+				$this->session->set_flashdata('event', 'Automóvel modificado com sucesso!');
 
-        	redirect('frota/pesquisa');
-        }	
-     }
-  }
+			}else{//caso contrario trata-se de um insert
+				$datos = array(
+					"modelo"=> $this->input->post('modelo'),
+					"cor"=> $this->input->post('cor'),
+					"estado"=> $this->input->post('estado'),
+					"matricula"=> $this->input->post('matricula')
+					);
+				$this->automovel_model->create($datos);
+				$this->session->set_flashdata('event', 'Automóvel criado com sucesso!');
+			}
+			redirect('frota/pesquisa');
+		}	
+	}
+}
