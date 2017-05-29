@@ -110,7 +110,7 @@ class Frota extends CI_Controller {
 		$autoDummy->id =NULL;
 		$autoDummy->modelo_id =0;
 		$autoDummy->cor_id =0;
-		$autoDummy->disponibilidade =2;
+		$autoDummy->disponibilidade =1;
 		$autoDummy->matricula =NULL;
 
 		$data['cores'] = $this->cores_model->getAll();
@@ -127,7 +127,7 @@ class Frota extends CI_Controller {
 	}
 
 	public function escrita(){
-			var_dump($this->input->post('estado'));
+		//var_dump($this->input->post('id'));
 		// $novo = $this->input->post('id')?? $this->input->post('id') : NULL;
 		$whiteListModelos = $this->modelos_model->getListID();
 		$whiteListCores = $this->cores_model->getListID();
@@ -199,8 +199,8 @@ class Frota extends CI_Controller {
 					"disponibilidade"=> $this->input->post('estado'),
 					"matricula"=> $this->input->post('matricula')
 					);
-
 				$this->automovel_model->editarAutomovel($id, $datos);
+				//var_dump($datos);
 				$this->session->set_flashdata('event', 'Automóvel modificado com sucesso!');
 
 			}else{//caso contrario trata-se de um insert

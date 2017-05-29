@@ -40,10 +40,10 @@
 
 				<div class="form-group">
 					<label class="radio-inline">
-						<input type="radio" name="estado" value="<?php echo $auto->disponibilidade; ?>" <?php echo set_radio('estado', $auto->disponibilidade, ( 1 == $auto->disponibilidade)); ?> >Disponível
+						<input type="radio" name="estado" value="1" <?php echo set_radio('estado', $auto->disponibilidade, ( 1 == $auto->disponibilidade)); ?> >Disponível
 					</label>
 					<label class="radio-inline">
-						<input type="radio" name="estado" value="<?php echo $auto->disponibilidade; ?>" <?php echo set_radio('estado', $auto->disponibilidade,( 0 == $auto->disponibilidade)); ?> >Ocupado
+						<input type="radio" name="estado" value="0" <?php echo set_radio('estado', $auto->disponibilidade,( 0 == $auto->disponibilidade)); ?> >Ocupado
 					</label>
 				</div>
 					<?php echo form_error('estado'); ?>
