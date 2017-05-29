@@ -33,21 +33,22 @@
 
 			<div class="form-group">
 				<label for="matricula">Matricula </label>
-				<input value="<?php echo $auto->matricula ?>" type="text" class="form-control" id="matricula" name="matricula" placeholder="AA-00-99" maxlength="8" required>
+				<input value="<?php echo $auto->matricula ?>" type="text" class="form-control" id="matricula" name="matricula" placeholder="XX-XX-XX" maxlength="8" required>
 				<?php echo form_error('matricula'); ?>
 			</div>
 
 			<div class="col-md-6 col-md-offset-3">
 
 				<div class="form-group">
-					<label class="radio-inline">
-						<input type="radio" name="estado" id="d" value="1">Disponível
+					<label class="radio-inline" for="estado">
+						<input type="radio" name="estado" value="<?php echo $auto->disponibilidade; ?>" <?php echo set_radio('estado', $auto->disponibilidade, ( 1 == $auto->disponibilidade)); ?> >Disponível
 					</label>
-					<label class="radio-inline">
-						<input type="radio" name="estado" id="o" value="0">Ocupado
+					<label class="radio-inline" for="estado">
+						<input type="radio" name="estado" value="<?php echo $auto->disponibilidade; ?>" <?php echo set_radio('estado', $auto->disponibilidade,( 0 == $auto->disponibilidade)); ?> >Ocupado
 					</label>
 					<?php echo form_error('estado'); ?>
 				</div>
+
 
 				<div class="form-group">
 					<a href="<?php echo base_url("frota/pesquisa") ?>" class="btn btn-warning">Cancelar</a>
