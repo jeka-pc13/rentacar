@@ -104,7 +104,7 @@ class Frota extends CI_Controller {
 		$data['content']     = 'frota/remover';
 		$data['auto']     = $this->automovel_model->getCarroById($id_automovel);
 		
-		$data['create_modal'] = $this->load->view('books/create', $data, TRUE);
+		//$data['create_modal'] = $this->load->view('books/create', $data, TRUE);
 		$this->load->view('frota/remover',$data);
 
 	}
