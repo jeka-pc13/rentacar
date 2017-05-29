@@ -68,4 +68,4 @@
 	new Formatter(document.getElementById('matricula'), {
 		'pattern': '{{**}}-{{99}}-{{**}}'
 	});
-</script>
+</script> 

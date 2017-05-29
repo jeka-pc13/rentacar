@@ -4,10 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="container-fluid">
 	<div class="container">
-		<h1>Vales Rent-A-Car</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, atque. Assumenda a, voluptate totam aperiam, numquam excepturi ea, error enim fugiat quos, ad eius! Ad tempora provident ducimus corrupti. Natus voluptatibus repellat blanditiis accusamus, ea, voluptates vero sint illum necessitatibus labore consectetur architecto ex, aliquam temporibus! Velit, ullam quos sapiente qui nesciunt sint? Aperiam quas facere sequi accusamus nemo, commodi eum perferendis nam id totam ea obcaecati nobis, eaque labore omnis vero maiores, iusto aliquid quisquam? Ea numquam cupiditate alias ipsa, accusantium ad recusandae provident repellendus quam adipisci, culpa harum minima iure commodi optio ex et explicabo obcaecati accusamus dolores!</p>
-		<button type="submit" class="btn btn-primary">Frota</button>
-		<!-- <a type="submit" href="<?php echo base_url("rentacar/"); ?>" class="btn btn-primary">+Add</a> -->
+		<h1>Vale Rent a Car</h1>
+		<p>Vale Rent a Car ofereçe viaturas de qualidade e seguras através de um serviço personalizado prestado por staff experiente. Pretendemos ser a sua melhor opção para que possa desfrutar ao máximo a sua estadia na Ilha da Madeira. Pode contar com Quilómetros Ilimitados, possibilidade de aluguer de GPS, seguro extra SCDW para Total Protecção e Isenção de Franquia, possibilidade de aluguer Sem Cartão de Crédito e Cadeiras de Criança seguras.</p>
+		<p>Somos uma empresa reconhecida pelo programa "Fast Lane", que permitiu aumentar a presença no mercado e abrir caminho para a transição de uma empresa tradicional de aluguer de veículos para um operador de serviços de mobilidade e melhorar sua excelência operacional. Este programa de transformação em curso lançou as bases para um crescimento sustentável e rentável.</p>
 
 		<div class="inner cover">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
