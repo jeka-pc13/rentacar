@@ -111,6 +111,7 @@ class Frota extends CI_Controller {
 
 	public function delete($id_automovel=1){
 
+		redirect('frota/pesquisa','refresh');
 	}
 
 	public function adicionar(){
