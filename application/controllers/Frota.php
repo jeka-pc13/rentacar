@@ -110,7 +110,7 @@ class Frota extends CI_Controller {
 		$autoDummy->id =NULL;
 		$autoDummy->modelo_id =0;
 		$autoDummy->cor_id =0;
-		$autoDummy->disponibilidade =1;
+		$autoDummy->disponibilidade =2;
 		$autoDummy->matricula =NULL;
 
 		$data['cores'] = $this->cores_model->getAll();
