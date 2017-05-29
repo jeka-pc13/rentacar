@@ -109,8 +109,8 @@ class Frota extends CI_Controller {
 
 	}
 
-	public function delete($id_automovel=1){
-
+	public function delete($id_automovel=NULL){
+		$this->automovel_model->removerAutomovel($id_automovel);
 		redirect('frota/pesquisa','refresh');
 	}
 
