@@ -127,6 +127,7 @@ class Frota extends CI_Controller {
 	}
 
 	public function escrita(){
+			var_dump($this->input->post('estado'));
 		// $novo = $this->input->post('id')?? $this->input->post('id') : NULL;
 		$whiteListModelos = $this->modelos_model->getListID();
 		$whiteListCores = $this->cores_model->getListID();
@@ -198,6 +199,7 @@ class Frota extends CI_Controller {
 					"disponibilidade"=> $this->input->post('estado'),
 					"matricula"=> $this->input->post('matricula')
 					);
+
 				$this->automovel_model->editarAutomovel($id, $datos);
 				$this->session->set_flashdata('event', 'Automóvel modificado com sucesso!');
 

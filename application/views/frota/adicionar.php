@@ -39,10 +39,10 @@
 			<div class="col-md-6 col-md-offset-3">
 
 				<div class="form-group">
-					<label class="radio-inline" for="estado">
+					<label class="radio-inline">
 						<input type="radio" name="estado" value="<?php echo $auto->disponibilidade; ?>" <?php echo set_radio('estado', $auto->disponibilidade, ( 1 == $auto->disponibilidade)); ?> >Disponível
 					</label>
-					<label class="radio-inline" for="estado">
+					<label class="radio-inline">
 						<input type="radio" name="estado" value="<?php echo $auto->disponibilidade; ?>" <?php echo set_radio('estado', $auto->disponibilidade,( 0 == $auto->disponibilidade)); ?> >Ocupado
 					</label>
 				</div>
