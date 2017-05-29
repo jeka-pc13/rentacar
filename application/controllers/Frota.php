@@ -74,7 +74,7 @@ class Frota extends CI_Controller {
 	
 
 	public function editar($id_automovel = 1){
-		var_dump($id_automovel);
+		//var_dump($id_automovel);
 		
 		$whiteListModelos = $this->modelos_model->getListID();
 		$whiteListCores = $this->cores_model->getListID();
@@ -128,11 +128,11 @@ class Frota extends CI_Controller {
 		$whiteListCores = $this->cores_model->getListID();
 		$id = $this->input->post('id')?? NULL;
 		$regraMatricula = "";
-		if (!is_null($id)){
+		if (is_null($id)){//modo criacao
 			$regraMatricula = "|is_unique[automoveis.matricula]";
-			//echo "editando";
-		}else{
-			//echo "creando";
+
+		}else{//modo edicao
+
 		}
 		
 
@@ -189,12 +189,10 @@ class Frota extends CI_Controller {
 			// $data['content']     = 'frota/adicionar';
 			// $this->load->view('init',$data);
 			// 
-			if (!is_null($id)){
-				redirect('frota/editar');
-			//echo "editando";
+			if (is_null($id)){
+				$this->adicionar();
 			}else{
-				redirect('frota/adicionar');
-			//echo "creando";
+				$this->editar();
 			}
 
 		}else{// nesta fase sao passadas todas as validacoes, pelo que o pretendido e ou bem inserir o novo automovel ou bem atualizar o existente

@@ -137,8 +137,8 @@ class Automovel_model extends CI_Model {
 	 * @return     <type>   ( description_of_the_return_value )
 	 */
 	public function editarAutomovel(int $id, array $data){
-		var_dump($data);
-		var_dump($id);
+		//var_dump($data);
+		//var_dump($id);
 		$this->db->where('id', $id);
 		// remover items do array com chaves como id, cremovido ou algo fora das
 		// keys possiveis
