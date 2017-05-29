@@ -46,8 +46,8 @@
 					<label class="radio-inline" for="estado">
 						<input type="radio" name="estado" value="<?php echo $auto->disponibilidade; ?>" <?php echo set_radio('estado', $auto->disponibilidade,( 0 == $auto->disponibilidade)); ?> >Ocupado
 					</label>
-					<?php echo form_error('estado'); ?>
 				</div>
+					<?php echo form_error('estado'); ?>
 
 
 				<div class="form-group">

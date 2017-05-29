@@ -121,12 +121,10 @@ class Carro {
     }
 
     public function imprimeApagar(){
-    	if (!$this->disponibilidade) {
-            return '<a class="btn btn-sm btn-danger disabled" href="'.$this->id.'" data-toggle="modal" data-target="#apaga-automovel"> Apagar Automovel</a>';
-
-
+    	if ($this->disponibilidade) {
+            return '<a class="btn btn-sm btn-danger" href="'.$this->id.'" data-toggle="modal" data-target="#apaga-automovel"> Apagar Automovel</a>';
         }
-        return "";
+        return '<a class="btn btn-sm btn-danger disabled" href="'.$this->id.'" data-toggle="modal" data-target="#apaga-automovel"> Apagar Automovel</a>';
 
     }
 
