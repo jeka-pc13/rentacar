@@ -22,35 +22,54 @@ class Publico extends CI_Controller {
 		$this->load->library('form_validation');
 
 		//PROBARRRRR
-		$this->load->library('encrypt');
-		$this->load->helper('security');
-
+		//$this->load->library('encrypt');
+		//$this->load->helper('security');
 	}
 	
+	/**
+	 * [index description]
+	 * @return [type] [description]
+	 */
 	public function index(){
 		$data['active_menu'] = 'home';
 		$data['content']     = 'home';
 		$this->load->view('init',$data);
 	}
+
+	/**
+	 * [home description]
+	 * @return [type] [description]
+	 */
 	public function home(){
 		$data['active_menu'] = 'home';
 		$data['content']     = 'home';
 		$this->load->view('init',$data);
 	}
 
+	/**
+	 * [sobre description]
+	 * @return [type] [description]
+	 */
 	public function sobre(){
 		$data['active_menu'] = 'about';
 		$data['content']     = 'sobre';
 		$this->load->view('init',$data);
 	}
 
+	/**
+	 * [contacto description]
+	 * @return [type] [description]
+	 */
 	public function contacto(){
 		$data['active_menu'] = 'contact';
 		$data['content']     = 'contacto';
 		$this->load->view('init',$data);
 	}
 
-	// Send Gmail to another user
+	/**
+	 * Send Gmail to another user
+	 * @return [type] [description]
+	 */
 	public function send_mail() {
         // Check for validation
 		$this->form_validation->set_rules('email', 'Correio', 'trim|required|xss_clean');
@@ -106,6 +125,11 @@ class Publico extends CI_Controller {
 			$this->load->view('init',$data);
 		}
 		
+		/**
+		 * [validate_captcha description]
+		 * @param  [type] $recaptcha [description]
+		 * @return [type]            [description]
+		 */
 		function validate_captcha() { $recaptcha = trim($this->input->post('g-recaptcha-response')); 
 			$userIp= $this->input->ip_address(); 
 			$secret='6LehOiMUAAAAALsbB5YBw1rSU5Kg6iMMKA9Egbzw'; 
