@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid conteudo">
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1 img-responsive">
 			
