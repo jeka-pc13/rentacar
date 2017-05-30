@@ -15,13 +15,10 @@
 		<div class="col-md-4">
 			<div class="msg">
 				<?php if (isset($message_display)): ?>
-					<div class="panel panel-info">
-						<div class="panel-heading">
-							<h3 class="panel-title">Envio da Mensagem</h3>
-						</div>
-						<div class="panel-body">
-							<?php echo $message_display ?>
-						</div>
+					
+					<div class="alert alert-dismissible alert-info">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<?php echo $message_display ?>
 					</div>
 				<?php endif ?>
 
