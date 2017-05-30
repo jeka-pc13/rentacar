@@ -36,25 +36,26 @@
 					<label for="nome" class="col-lg-2 control-label">Nome</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="nome" placeholder="nome" name="nome">
+						<?php echo form_error('nome'); ?>
 					</div>
-					<?php echo form_error('nome'); ?>
+					
 				</div>
 
 				<div class="form-group">
 					<label for="email" class="col-lg-2 control-label">Email</label>
 					<div class="col-lg-10">
 						<input type="email" class="form-control" id="email" placeholder="Email" name="email">
+						<?php echo form_error('email'); ?>
 					</div>
-					<?php echo form_error('email'); ?>
 				</div>	
 
 
 				<div class="form-group">
 					<label for="mensagem" class="col-lg-2 control-label">Mensagem</label>
 					<div class="col-lg-10">
-						<textarea class="form-control" rows="3" id="mensagem" name="mensagem" placeholder="Escreva a sua mensagem"></textarea><?php echo form_error('mensagem'); ?>	
+						<textarea class="form-control" rows="3" id="mensagem" name="mensagem" placeholder="Escreva a sua mensagem"></textarea>
+						<?php echo form_error('mensagem'); ?>	
 					</div>
-					
 				</div>
 
 				<div class="form-group">
