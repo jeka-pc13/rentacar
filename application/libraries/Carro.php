@@ -120,13 +120,6 @@ class Carro {
     	return "";
     }
 
-    public function imprimeApagar(){
-    	if ($this->disponibilidade) {
-            return '<a class="btn btn-xs btn-danger js_apaga" href="'.$this->id.'" data-toggle="modal" data-target="#apaga-automovel"><span class="glyphicon glyphicon-trash"></span></a>';
-        }
-        return '<a class="btn btn-xs btn-danger disabled" data-toggle="modal" data-target="#apaga-automovel"><span class="glyphicon glyphicon-trash"></span></a>';
-
-    }
 
     public function imprimeMatriculaFormatada(){
     	$aux[0] = substr($this->matricula, 0,1);

@@ -6,10 +6,6 @@ class Automovel_model extends CI_Model {
 	public function __construct(){
 		parent::__construct();
 		$this->load->database();
-		$this->pdo = $this->db->conn_id;
-		//var
-		//
-		//_dump($this->db);
 	}
 
 	/**
@@ -175,8 +171,7 @@ class Automovel_model extends CI_Model {
 	}
 
 	public function getCarroById($id){
-		$this->db->select("*")
-		->from("automoveis.automoveis autos")
+		$this->db->from("automoveis.automoveis autos")
 		->where("autos.id",$id);
 			// ->limit($limit,$offset);
 		return $this->db->get()->row();

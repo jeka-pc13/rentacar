@@ -209,9 +209,9 @@ class Frota extends CI_Controller {
 		if ($this->form_validation->run() === FALSE){
 		//Passou todas as validacoes, pelo que se pode fazer o insert/update
 			if (is_null($id)){// se nao existe o id o pretendido e adicionar o novo automovel
-				$this->adicionar();
+				$this->adicionar(); //NOT COOL
 			}else{//caso existir entao o pretendido e editar o automovel
-				$this->editar();
+				$this->editar(); //NOT COOL
 			}
 
 		}else{// nesta fase sao passadas todas as validacoes, pelo que o pretendido e ou bem inserir o novo automovel ou bem atualizar o existente
