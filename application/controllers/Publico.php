@@ -23,6 +23,8 @@ class Publico extends CI_Controller {
 
 		$this->load->library('encrypt');
 		$this->load->helper('security');
+
+		$this->load->library("session");
 	}
 	
 	/**
@@ -85,10 +87,10 @@ class Publico extends CI_Controller {
 			array(
 				'field' => 'nome',
 				'label' => 'Nome',
-				'rules' => 'trim|required|alpha|xss_clean',
+				'rules' => 'trim|required|alpha_numeric_spaces|xss_clean',
 				'errors' => array(
 					'required' => 'É obrigatório inserir um %s.',
-					'alpha' => 'Ó campo %s só permite caracteres alfabéticos',
+					'alpha_numeric_spaces' => 'Contém caracteres inválidos',
 					)
 				),
 			array(
@@ -108,7 +110,7 @@ class Publico extends CI_Controller {
 			//$this->load->view('view_form');
 			$data['active_menu'] = 'contact';
 			$data['content']     = 'contacto';
-			$this->load->view('init',$data);
+			$this->contacto();
 		} else {
 
             // Storing submitted values
@@ -144,14 +146,17 @@ class Publico extends CI_Controller {
 			$this->email->message($message);
 
 			if ($this->email->send()) {
-				$data['message_display'] = 'Email enviado com successo !';
+				//$data['message_display'] = 'Email enviado com successo !';
+				$this->session->set_flashdata('event', 'Email enviado com successo !');
 			} else {
-				$data['message_display'] =  '<p class="error_msg">Palavra passe ou correio inválido!</p>';
+				//$data['message_display'] =  '<p class="error_msg">Palavra passe ou correio inválido!</p>';
+				$this->session->set_flashdata('event', 'Palavra passe ou correio inválido!');
 			}
-
+			redirect('publico/contacto');
+/*
 			$data['active_menu'] = 'contact';
 			$data['content']     = 'contacto';
-			$this->load->view('init',$data);
+			$this->load->view('init',$data);*/
 		}
 		
 		/**

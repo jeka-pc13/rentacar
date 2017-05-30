@@ -7,15 +7,12 @@
 	</div>
 
 	<div class="row">
-
-
 		<div class="col-sm-4 col-sm-offset-4">
 			<div class="msg">
-				<?php if (isset($message_display)): ?>
-					
+				<?php if ($this->session->has_userdata("event")):?>
 					<div class="alert alert-dismissible alert-info">
 						<button type="button" class="close" data-dismiss="alert">&times;</button>
-						<?php echo $message_display ?>
+						<?php echo $this->session->event?>
 					</div>
 				<?php endif ?>
 
