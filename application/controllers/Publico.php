@@ -21,9 +21,8 @@ class Publico extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		//PROBARRRRR
-		//$this->load->library('encrypt');
-		//$this->load->helper('security');
+		$this->load->library('encrypt');
+		$this->load->helper('security');
 	}
 	
 	/**
@@ -72,9 +71,39 @@ class Publico extends CI_Controller {
 	 */
 	public function send_mail() {
         // Check for validation
-		$this->form_validation->set_rules('email', 'Correio', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('nome', 'Nome', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('mensagem', 'Mensagem', 'trim|required|xss_clean');
+        
+        $config = array(
+			array(
+				'field' => 'email',
+				'label' => 'Email',
+				'rules' => 'trim|required|valid_email|xss_clean',
+				'errors' => array(
+					'required' => 'É obrigatório indicar um %s.',
+					'valid_email' => 'Insira um %s válido.'
+					)
+				),
+			array(
+				'field' => 'nome',
+				'label' => 'Nome',
+				'rules' => 'trim|required|alpha|xss_clean',
+				'errors' => array(
+					'required' => 'É obrigatório inserir um %s.',
+					'alpha' => 'Ó campo %s só permite caracteres alfabéticos',
+					)
+				),
+			array(
+				'field' => 'mensagem',
+				'label' => 'Mensagem',
+				'rules' => 'trim|required|alpha_numeric_spaces|xss_clean',
+				'errors' => array(
+					'required' => 'É obrigatório inserir a %s.',
+					'alpha_numeric_spaces' => 'Contém caracteres inválidos'
+					)
+				)
+			);
+
+		$this->form_validation->set_rules($config);
+     
 		if ($this->form_validation->run() == FALSE) {
 			//$this->load->view('view_form');
 			$data['active_menu'] = 'contact';
