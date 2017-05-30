@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container conteudo">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<?php echo validation_errors(); ?>
+			
 			<?php echo form_open('frota/escrita');?>
 			
 			<div class="form-group">
@@ -44,18 +44,20 @@
 					</label>
 					<label class="radio-inline">
 						<input type="radio" name="estado" value="0" <?php echo set_radio('estado', $auto->disponibilidade,( 0 == $auto->disponibilidade)); ?> >Ocupado
-					</label>
+					</label><?php echo form_error('estado'); ?>
 				</div>
-					<?php echo form_error('estado'); ?>
-
-
+				</div>
+					
+			<div class="col-md-6 col-md-offset-3">
 				<div class="form-group">
 					<a href="<?php echo base_url("frota/pesquisa") ?>" class="btn btn-warning">Cancelar</a>
 					<button type="submit" class="btn btn-primary form-inline">Guardar</button>
 				</div>
+
 				<?php if (!is_null($auto->id)): ?>
 					<input type="hidden" name="id" value="<?php echo $auto->id ?>">
 				<?php endif ?>
+
 			</div>
 			<?php echo form_close(); ?>
 		</div>
@@ -66,6 +68,6 @@
 <script src="<?php echo base_url('/assets/js/formatter.min.js')?>"></script>
 <script>
 	new Formatter(document.getElementById('matricula'), {
-		'pattern': '{{**}}-{{99}}-{{**}}'
+		'pattern': '{{**}}-{{**}}-{{**}}'
 	});
 </script> 

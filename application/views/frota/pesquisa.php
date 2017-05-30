@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container conteudo">
 	<div class="panel">
 		<?php if ($this->session->has_userdata("event")):?>
 			<div class="panel panel-success">
