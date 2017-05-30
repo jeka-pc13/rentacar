@@ -101,6 +101,14 @@ class Publico extends CI_Controller {
 					'required' => 'É obrigatório inserir a %s.',
 					'alpha_numeric_spaces' => 'Contém caracteres inválidos'
 					)
+				),
+			array(
+				'field' => 'g-recaptcha-response',
+				'label' => 'captcha',
+				'rules' => 'required',
+				'errors' => array(
+					'required' => 'É obrigatório o %s.'
+					)
 				)
 			);
 
@@ -108,8 +116,8 @@ class Publico extends CI_Controller {
      
 		if ($this->form_validation->run() == FALSE) {
 			//$this->load->view('view_form');
-			$data['active_menu'] = 'contact';
-			$data['content']     = 'contacto';
+			// $data['active_menu'] = 'contact';
+			// $data['content']     = 'contacto';
 			$this->contacto();
 		} else {
 
