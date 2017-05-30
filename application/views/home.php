@@ -20,13 +20,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-						<img class="img-rounded img-responsive img-thumbnail" alt="Responsive image" src="<?php echo base_url('assets/images/toyota_yaris_01.png')?>">
+						<img class="img-rounded img-responsive img-thumbnail" alt="Responsive image" src="<?php echo base_url('assets/images/yaris_final.jpg')?>">
 					</div>					
 					<div class="item">
-						<img class="img-rounded img-responsive img-thumbnail" alt="Responsive image" src="<?php echo base_url('assets/images/nissan_micra_06.png')?>">
+						<img class="img-rounded img-responsive img-thumbnail" alt="Responsive image" src="<?php echo base_url('assets/images/micra_final.jpg')?>">
 					</div>
 					<div class="item">
-						<img class="img-rounded img-responsive img-thumbnail" alt="Responsive image" src="<?php echo base_url('assets/images/audiA4_01.jpg')?>">
+						<img class="img-rounded img-responsive img-thumbnail" alt="Responsive image" src="<?php echo base_url('assets/images/audi_final2.jpg')?>">
 					</div>
 				</div>
 
