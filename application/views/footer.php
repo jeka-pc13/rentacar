@@ -10,15 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-  $( function() {
-    $( "#data_publicacao" ).datepicker(
-    {
-      dateFormat: 'yy-mm-dd'
-    }
-    );
-  } );
-</script>
+
 
 <!-- Custom JS files -->
 <?php if($js_files ?? false):?>

@@ -52,11 +52,6 @@ class Frota extends CI_Controller {
 		$config['total_rows'] = $this->automovel_model->getAutomoveisListCount($search);
 		$this->pagination->initialize($config);
 		
-
-		// $data['cores']= $this->input->get('cores');//ALTERAR
-		// $data['fabricantes']= $this->input->get('fabricantes');//ALTERAR
-  		// $data['modelos']= $this->input->get('modelos');
-
 		$data['search_results_count'] = $config['total_rows'];
 		$data['search_pagination'] = $this->pagination->create_links();
 		$data['search_results'] = $this->automovel_model->obterAutomoveisPorFiltro($search, $offset);
@@ -76,8 +71,11 @@ class Frota extends CI_Controller {
 
 	}
 
-	
-
+	/**
+	 * [editar description]
+	 * @param  integer $id_automovel [description]
+	 * @return [type]                [description]
+	 */
 	public function editar($id_automovel = 1){
 		//var_dump($id_automovel);
 		
@@ -96,7 +94,11 @@ class Frota extends CI_Controller {
 		$this->load->view('init',$data);
 	}	
 
-
+	/**
+	 * [remover description]
+	 * @param  integer $id_automovel [description]
+	 * @return [type]                [description]
+	 */
 	public function remover($id_automovel=1){
 
 		$data['id_automovel'] = $id_automovel;
@@ -109,11 +111,20 @@ class Frota extends CI_Controller {
 
 	}
 
+	/**
+	 * [delete description]
+	 * @param  [type] $id_automovel [description]
+	 * @return [type]               [description]
+	 */
 	public function delete($id_automovel=NULL){
 		$this->automovel_model->removerAutomovel($id_automovel);
 		redirect('frota/pesquisa','refresh');
 	}
 
+	/**
+	 * [adicionar description]
+	 * @return [type] [description]
+	 */
 	public function adicionar(){
 		$autoDummy = new stdClass();
 		$autoDummy->id =NULL;
@@ -135,6 +146,10 @@ class Frota extends CI_Controller {
 		
 	}
 
+	/**
+	 * [escrita description]
+	 * @return [type] [description]
+	 */
 	public function escrita(){
 		//var_dump($this->input->post('id'));
 		// $novo = $this->input->post('id')?? $this->input->post('id') : NULL;
