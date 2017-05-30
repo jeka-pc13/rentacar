@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<img class="img-rounded img-responsive img-thumbnail" alt="Responsive image" src="<?php echo base_url('assets/images/toyota_yaris_01.png')?>">
 					</div>					
 					<div class="item">
-						<img class="img-rounded img-responsive img-thumbnail" alt="Responsive image" src="<?php echo base_url('assets/images/nissan_micra_02.png')?>">
+						<img class="img-rounded img-responsive img-thumbnail" alt="Responsive image" src="<?php echo base_url('assets/images/nissan_micra_06.png')?>">
 					</div>
 					<div class="item">
 						<img class="img-rounded img-responsive img-thumbnail" alt="Responsive image" src="<?php echo base_url('assets/images/audiA4_01.jpg')?>">
