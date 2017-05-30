@@ -9,7 +9,7 @@
 		<div class="col-md-4 col-md-offset-2">
 			Super Mapa:
 
-			<img src="http://placehold.it/850x450" alt="imagem X" width="850" height="450" class="img-responsive">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3358.281345157826!2d-17.059589572933547!3d32.678563316649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-PT!2spt!4v1496131131897" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 		</div>
 
 		<div class="col-md-4">
