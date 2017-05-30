@@ -32,17 +32,19 @@ body {
 	overflow-y: auto;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 .carousel-inner img {
     width: 100%;
     max-height: 560px;
 }
->>>>>>> 17c1a387719a747ca1a1e0dafbc9a4e62d886f66
-=======
+
+
 .carousel-inner img {
     width: 100%;
     max-height: 560px;
 }
->>>>>>> 73a666dd035baa03470b919b1208dd4ccefa3e05
+
+.conteudo {
+	padding-top: 50px; 
+}
+

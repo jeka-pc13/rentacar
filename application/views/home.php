@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<div class="container-fluid">
+<div class="container-fluid conteudo">
 	<div class="container">
 		<h1>Vale Rent a Car</h1>
 		<p>Vale Rent a Car ofereçe viaturas de qualidade e seguras através de um serviço personalizado prestado por staff experiente. Pretendemos ser a sua melhor opção para que possa desfrutar ao máximo a sua estadia na Ilha da Madeira. Pode contar com Quilómetros Ilimitados, possibilidade de aluguer de GPS, seguro extra SCDW para Total Protecção e Isenção de Franquia, possibilidade de aluguer Sem Cartão de Crédito e Cadeiras de Criança seguras.</p>

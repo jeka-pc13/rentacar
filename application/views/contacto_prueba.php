@@ -1,7 +1,7 @@
 
 <body>
 	<div class="main">
-		<div id="content">
+		<div id="content conteudo">
 			<h2 id="form_head">Codelgniter Email</h2>
 			<div id="form_input">
 				<div class="msg">
